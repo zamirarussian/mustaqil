@@ -23,8 +23,6 @@
   --bg-alt:#e6edf9;
   --white:#ffffff;
   --border:#e8ecf6;
-  --amber-bg:#fff8ec;
-  --amber-text:#7a4a00;
   --radius:20px;
   --radius-sm:15px;
 }
@@ -80,14 +78,14 @@ section{padding:56px 20px}
 .prob-bottom .prob-eyebrow{color:var(--primary-dark)}
 .prob-bottom .prob-text{color:var(--primary-dark);font-weight:700}
 
-/* TUZILMA */
-.daily{background:var(--bg)}
-.daily-timeline{display:grid;grid-template-columns:1fr;gap:12px;max-width:600px;margin:0 auto}
-.day-block{background:var(--white);border-radius:var(--radius);padding:18px 20px;display:flex;align-items:center;gap:16px;border:1px solid var(--border)}
-.day-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
-.day-info{flex:1}
-.day-name{font-size:15px;font-weight:700;color:var(--text)}
-.day-desc{font-size:13px;color:var(--muted);font-weight:500;margin-top:2px}
+/* KURS MAZMUNI */
+.content-section{background:var(--bg)}
+.content-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;max-width:900px;margin:0 auto}
+.content-card{background:var(--white);border-radius:var(--radius);padding:24px 20px;border:1px solid var(--border);transition:transform 0.2s,box-shadow 0.2s}
+.content-card:hover{transform:translateY(-3px);box-shadow:0 5px 18px rgba(20,45,100,.10)}
+.cc-icon{font-size:32px;margin-bottom:12px;display:block}
+.cc-title{font-size:16px;font-weight:800;color:var(--navy);margin-bottom:6px}
+.cc-desc{font-size:13px;color:var(--muted);font-weight:500;line-height:1.5}
 
 /* NATIJA */
 .results{background:var(--white)}
@@ -100,6 +98,9 @@ section{padding:56px 20px}
 .a1 .level-label{background:#d6e0fb;color:#16308f}
 .b1 .level-label{background:rgba(228,42,59,0.25);color:#ff8b95}
 .level-card h3{font-size:19px;font-weight:900;margin-bottom:16px}
+.level-condition{font-size:13px;font-weight:600;margin-bottom:6px;opacity:0.75}
+.a1 .level-condition{color:var(--primary-dark)}
+.b1 .level-condition{color:rgba(255,255,255,0.7)}
 .b1 h3{color:#fff}
 .result-list{list-style:none;display:flex;flex-direction:column;gap:10px}
 .result-list li{font-size:14px;font-weight:600;display:flex;align-items:flex-start;gap:8px;line-height:1.4}
@@ -107,29 +108,6 @@ section{padding:56px 20px}
 .b1 .result-list li{color:rgba(255,255,255,0.85)}
 .result-list li::before{content:'✓';font-weight:900;color:var(--primary);flex-shrink:0;margin-top:1px}
 .b1 .result-list li::before{color:#ff8b95}
-
-/* QANDAY NATIJA OLASIZ (presentatsiyadan) */
-.outcome{background:linear-gradient(135deg,#1f54e0,#16308f);border-radius:var(--radius);max-width:640px;margin:0 auto;padding:32px 28px;color:#fff}
-.outcome-title{font-size:20px;font-weight:900;margin-bottom:20px}
-.outcome ul{list-style:none;display:flex;flex-direction:column;gap:14px}
-.outcome li{display:flex;align-items:flex-start;gap:12px;font-size:15px;font-weight:700}
-.outcome-check{width:26px;height:26px;border-radius:50%;background:#fff;color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;flex-shrink:0}
-
-/* KURS MAZMUNI */
-.content-section{background:var(--bg)}
-.content-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;max-width:900px;margin:0 auto}
-.content-card{background:var(--white);border-radius:var(--radius);padding:24px 20px;border:1px solid var(--border);transition:transform 0.2s,box-shadow 0.2s}
-.content-card:hover{transform:translateY(-3px);box-shadow:0 5px 18px rgba(20,45,100,.10)}
-.cc-icon{font-size:32px;margin-bottom:12px;display:block}
-.cc-title{font-size:16px;font-weight:800;color:var(--navy);margin-bottom:6px}
-.cc-desc{font-size:13px;color:var(--muted);font-weight:500;line-height:1.5}
-
-/* DASTURDA NIMALAR BOR — funnel (presentatsiyadan) */
-.funnel{background:var(--white)}
-.funnel-list{max-width:640px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
-.funnel-item{display:flex;align-items:center;gap:16px;background:var(--primary);border-radius:var(--radius-sm);padding:16px 20px;color:#fff}
-.funnel-num{width:34px;height:34px;border-radius:50%;background:#fff;color:var(--accent);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;flex-shrink:0}
-.funnel-text{font-weight:800;font-size:15px}
 
 /* BONUS */
 .bonuses{background:var(--bg)}
@@ -146,15 +124,6 @@ section{padding:56px 20px}
 .price-final{font-size:44px;font-weight:900;color:#fff;background:rgba(228,42,59,0.25);border:1.5px solid rgba(255,139,149,0.5);border-radius:16px;padding:14px 10px;margin-bottom:8px}
 .price-note{font-size:13px;color:rgba(255,255,255,0.65);font-weight:600}
 .price-urgency{margin-top:14px;font-size:13.5px;font-weight:800;color:#fff;background:rgba(228,42,59,0.35);border:1px solid rgba(255,139,149,0.5);border-radius:30px;padding:8px 16px;display:inline-block}
-
-/* MOTIVATSIYA */
-.motivation{background:var(--white)}
-.motiv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;max-width:780px;margin:0 auto}
-.motiv-card{background:var(--bg);border-radius:var(--radius);padding:32px 26px;border:1px solid var(--border);position:relative;overflow:hidden}
-.motiv-card::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:var(--primary);border-radius:4px 0 0 4px}
-.motiv-num{font-size:48px;font-weight:900;color:var(--primary-light);line-height:1;margin-bottom:12px}
-.motiv-title{font-size:18px;font-weight:900;color:var(--navy);margin-bottom:10px}
-.motiv-desc{font-size:14px;color:var(--muted);font-weight:500;line-height:1.6}
 
 /* CTA */
 .cta-section{background:linear-gradient(135deg,#16308f,#15247e);text-align:center;padding:70px 20px}
@@ -211,7 +180,7 @@ section{padding:56px 20px}
 <section class="problems fade-in">
   <div class="tag" style="display:block;text-align:center">MUAMMO</div>
   <h2 class="section-title">Shu muammolar sizga ham tanishmi?</h2>
-  <p class="section-sub">Ko'pchilikni qiynaydigan muammolar va ularga bizning dasturda yechimlar 👇</p>
+  <p class="section-sub">Eng ko'p uchraydigan muammolar va bizning dasturdagi yechim 👇</p>
   <div class="problems-grid">
 
     <div class="prob-card">
@@ -227,7 +196,7 @@ section{padding:56px 20px}
         <div class="prob-icon">🗣️</div>
         <div>
           <span class="prob-eyebrow">YECHIM</span>
-          <div class="prob-text">Avval gapirish usuli — dasturda birinchi kundan boshlab barcha mashqlar gapirish orqali boshlanadi.</div>
+          <div class="prob-text">Avval gapirish usuli — birinchi kundan boshlab barcha mashqlar gapirish orqali boshlanadi.</div>
         </div>
       </div>
     </div>
@@ -260,7 +229,7 @@ section{padding:56px 20px}
       </div>
       <div class="prob-arrow"><span>↓</span></div>
       <div class="prob-bottom">
-        <div class="prob-icon">🤖</div>
+        <div class="prob-icon">🤝</div>
         <div>
           <span class="prob-eyebrow">YECHIM</span>
           <div class="prob-text">Razgovorniy klub va maxsus AI suhbatdosh — doim tayyor.</div>
@@ -289,59 +258,47 @@ section{padding:56px 20px}
   </div>
 </section>
 
-<!-- TUZILMA -->
-<section class="daily fade-in">
-  <div class="tag" style="display:block;text-align:center">TUZILMA</div>
-  <h2 class="section-title">Kunlik mashqlar bilan tanishing</h2>
-  <p class="section-sub">Sizni so'zlashuvga olib chiqadigan tajribadan o'tgan mashqlar</p>
-  <div class="daily-timeline">
+<!-- KURS MAZMUNI -->
+<section class="content-section fade-in">
+  <div class="tag" style="display:block;text-align:center">DASTURDA</div>
+  <h2 class="section-title">Har kuni nima qilasiz?</h2>
+  <p class="section-sub">Lug'at, grammatika va tinglashdan — gapirishgacha, hammasi bir joyda</p>
+  <div class="content-grid">
 
-    <div class="day-block">
-      <div class="day-icon" style="background:#e8edfb">📖</div>
-      <div class="day-info">
-        <div class="day-name">Lug'at</div>
-        <div class="day-desc">Real suhbatda ishlatiladigan iboralar orqali so'z boyligini oshirish.</div>
-      </div>
+    <div class="content-card">
+      <span class="cc-icon">🗣️</span>
+      <div class="cc-title">Gapirish mashqlari</div>
+      <div class="cc-desc">Birinchi kundan boshlab taqlid, savollar va rolli o'yinlar orqali gapirasiz.</div>
     </div>
 
-    <div class="day-block">
-      <div class="day-icon" style="background:#fdeeef">✍️</div>
-      <div class="day-info">
-        <div class="day-name">Grammatika</div>
-        <div class="day-desc">Grammatikani qoidalar bilan emas, hayotiy vaziyatlar orqali o'rganish.</div>
-      </div>
+    <div class="content-card">
+      <span class="cc-icon">💬</span>
+      <div class="cc-title">AI suhbatdosh</div>
+      <div class="cc-desc">Kuniga istalgan vaqt sun'iy intellekt bilan ruscha suhbatlashib amaliyot qilasiz.</div>
     </div>
 
-    <div class="day-block">
-      <div class="day-icon" style="background:#e8edfb">📰</div>
-      <div class="day-info">
-        <div class="day-name">O'qish</div>
-        <div class="day-desc">Matnlar orqali tushunishni va so'zlarni to'g'ri ishlatishni o'rganish.</div>
-      </div>
+    <div class="content-card">
+      <span class="cc-icon">📖</span>
+      <div class="cc-title">Lug'at va grammatika</div>
+      <div class="cc-desc">Tayyor iboralar orqali o'rganasiz — grammatika o'z-o'zidan singiydi.</div>
     </div>
 
-    <div class="day-block">
-      <div class="day-icon" style="background:#fdeeef">🎧</div>
-      <div class="day-info">
-        <div class="day-name">Tinglash</div>
-        <div class="day-desc">Haqiqiy ruslar suhbatini eshitish va tushunish darajasini oshirish.</div>
-      </div>
+    <div class="content-card">
+      <span class="cc-icon">🎧</span>
+      <div class="cc-title">Tinglash va o'qish</div>
+      <div class="cc-desc">Haqiqiy ruslar suhbatini eshitib, matnlar orqali tushunishni oshirasiz.</div>
     </div>
 
-    <div class="day-block" style="border:2px solid #c3d3f7;background:#f3f6ff">
-      <div class="day-icon" style="background:#d6e0fb">🗣️</div>
-      <div class="day-info">
-        <div class="day-name" style="color:#16308f">Gapirish</div>
-        <div class="day-desc" style="color:#1f54e0">Taqlid, «Ролевой» va ovozli mashqlar orqali razgovorni oshirish.</div>
-      </div>
+    <div class="content-card">
+      <span class="cc-icon">👥</span>
+      <div class="cc-title">Razgovorniy klub</div>
+      <div class="cc-desc">Jonli chatda faqat rus tilida gapirib, haqiqiy odamlar bilan amaliyot qilasiz.</div>
     </div>
 
-    <div class="day-block">
-      <div class="day-icon" style="background:#fdeeef">✉️</div>
-      <div class="day-info">
-        <div class="day-name">Yozish</div>
-        <div class="day-desc">Yozma rus tilini rivojlantirmoqchi bo'lganlar uchun ixtiyoriy mashq.</div>
-      </div>
+    <div class="content-card">
+      <span class="cc-icon">🎬</span>
+      <div class="cc-title">Videodarslar</div>
+      <div class="cc-desc">Zamira Turganbaeva tomonidan eng muhim mavzularda maxsus yozilgan darslar.</div>
     </div>
 
   </div>
@@ -351,154 +308,55 @@ section{padding:56px 20px}
 <section class="results fade-in">
   <div class="tag" style="display:block;text-align:center">NATIJA</div>
   <h2 class="section-title">60 kun o'tgach nimalarga erishasiz?</h2>
-  <p class="section-sub">Boshlang'ich va yuqori darajalar uchun aniq ko'rsatkichlar</p>
+  <p class="section-sub">Darajangizga qarab — 60 kundan keyin qanday natijaga chiqishingizni ko'ring</p>
   <div class="results-wrap">
     <div class="level-card a1">
       <span class="level-label">A1 → A2</span>
+      <p class="level-condition">Agar hozirgi darajangiz A1–A2 bo'lsa, 60 kundan keyin:</p>
       <h3>Kundalik hayotda erkin</h3>
       <ul class="result-list">
         <li>Tanishish va suhbatni davom ettirish</li>
-        <li>Tovar va xizmatlar sotib olish</li>
-        <li>Kafe va restoranda muloqot</li>
-        <li>Transportdan foydalanish</li>
+        <li>Kafe, do'kon va transportda muloqot</li>
         <li>Shifokorga murojaat qilish</li>
-        <li>Kundalik masalalarni hal qilish</li>
-        <li>Ish uchrashuvida gapirish</li>
         <li>5–10 daqiqa tayyorliksiz gapirish</li>
         <li>1800–2500 so'zlik lug'at boyligi</li>
-        <li>Asosiy zamonlar va kelishiklar</li>
       </ul>
     </div>
     <div class="level-card b1">
       <span class="level-label">B1 → B2</span>
+      <p class="level-condition">Agar hozirgi darajangiz B1–B2 bo'lsa, 60 kundan keyin:</p>
       <h3>Ishonch bilan gapirish</h3>
       <ul class="result-list">
         <li>25+ hayotiy vaziyatda dialog olib borish</li>
-        <li>1800+ so'z va tayyor iboralar</li>
-        <li>Barcha kelishiklar va zamonlarni ishlatish</li>
-        <li>Fikrini erkin ifoda etish</li>
+        <li>Fikrini erkin, tarjimasiz ifoda etish</li>
         <li>Uzoq suhbatni ushlab turish</li>
-        <li>Munozara yuritish va dalil keltirish</li>
-        <li>Tarjimasiz gapirish</li>
         <li>Jonli nutqni tushunish</li>
-        <li>Ish va hayotda rus tilini ishlatish</li>
         <li>Tayyorliksiz suhbatni boshlash</li>
       </ul>
     </div>
   </div>
 </section>
 
-<!-- QANDAY NATIJA OLASIZ -->
-<section class="content-section fade-in">
-  <div class="tag" style="display:block;text-align:center">QISQACHA</div>
-  <h2 class="section-title">Qanday natija olasiz?</h2>
-  <div class="outcome">
-    <div class="outcome-title">3 ta asosiy o'zgarish</div>
-    <ul>
-      <li><span class="outcome-check">✓</span> Rus tilida gapirishni boshlaysiz</li>
-      <li><span class="outcome-check">✓</span> Qo'rquvdan xalos bo'lasiz</li>
-      <li><span class="outcome-check">✓</span> Ruslarni yaxshiroq tushunishni boshlaysiz</li>
-    </ul>
-  </div>
-</section>
-
-<!-- KURS MAZMUNI -->
-<section class="content-section fade-in">
-  <div class="tag" style="display:block;text-align:center">KURS MAZMUNI</div>
-  <h2 class="section-title">Dasturda nimalar bor?</h2>
-  <p class="section-sub">Har bir qism — aniq natija uchun tanlangan</p>
-  <div class="content-grid">
-
-    <div class="content-card">
-      <span class="cc-icon">🗣️</span>
-      <div class="cc-title">60 kunlik gapirish mashqlari</div>
-      <div class="cc-desc">Birinchi kundan boshlab gapirishni boshlaysiz.</div>
+<!-- BONUS -->
+<section class="bonuses fade-in">
+  <div class="tag" style="display:block;text-align:center">BONUS</div>
+  <h2 class="section-title">Hoziroq yozilganlar uchun bonuslar</h2>
+  <div class="bonus-grid">
+    <div class="bonus-card">
+      <span class="bonus-icon">📱</span>
+      <div class="bonus-title">Zamira Russian ilovasi — 60 kunlik to'liq dastur</div>
     </div>
-
-    <div class="content-card">
-      <span class="cc-icon">📋</span>
-      <div class="cc-title">Kunlik topshiriqlar</div>
-      <div class="cc-desc">Kuniga nima qilay ekan deb o'ylamaysiz. Siz uchun tayyor dastur.</div>
+    <div class="bonus-card">
+      <span class="bonus-icon">🎙️</span>
+      <div class="bonus-title">AI suhbatdosh — istalgan vaqt amaliyot</div>
     </div>
-
-    <div class="content-card">
-      <span class="cc-icon">🤖</span>
-      <div class="cc-title">AI suhbatdosh va promtlar</div>
-      <div class="cc-desc">Sun'iy intellekt bilan ishlash bo'yicha qo'llanma va promtlar.</div>
+    <div class="bonus-card">
+      <span class="bonus-icon">📚</span>
+      <div class="bonus-title">Rus tili BAZA kursi — gap tuzish formulalari</div>
     </div>
-
-    <div class="content-card">
-      <span class="cc-icon">🎭</span>
-      <div class="cc-title">«Ролевой» o'yinlar</div>
-      <div class="cc-desc">Real hayot dialoglari: taksida, bozorda, shifoxonada, do'konda qanday gapirishni o'rganasiz.</div>
-    </div>
-
-    <div class="content-card">
-      <span class="cc-icon">🎤</span>
-      <div class="cc-title">Taqlid</div>
-      <div class="cc-desc">Ruslar kabi aksentsiz va tabiiy gapirishni o'rganasiz.</div>
-    </div>
-
-    <div class="content-card">
-      <span class="cc-icon">👥</span>
-      <div class="cc-title">Razgovorniy klub</div>
-      <div class="cc-desc">Jonli chatda faqat rus tilida gapirish, haqiqiy odamlar bilan amaliyot.</div>
-    </div>
-
-    <div class="content-card">
-      <span class="cc-icon">🧩</span>
-      <div class="cc-title">Ibora tizimi</div>
-      <div class="cc-desc">Tayyor 800–1000 ta ibora. Kunlik suhbatda eng ko'p ishlatiladigan iboralar.</div>
-    </div>
-
-    <div class="content-card">
-      <span class="cc-icon">🎬</span>
-      <div class="cc-title">Videodarslar</div>
-      <div class="cc-desc">Zamira Turganbaeva tomonidan eng muhim mavzularda maxsus yozilgan videodarslarni ko'rasiz.</div>
-    </div>
-
-  </div>
-</section>
-
-<!-- MOTIVATSIYA -->
-<section class="motivation fade-in">
-  <div class="tag" style="display:block;text-align:center">NIMA UCHUN ISHLAYDI</div>
-  <h2 class="section-title">Qanday qilib bu dastur sizni gapirishingizga yordam beradi</h2>
-  <div class="motiv-grid">
-    <div class="motiv-card">
-      <div class="motiv-num">01</div>
-      <div class="motiv-title">Ilmiy isbotlangan.</div>
-      <div class="motiv-desc">Ushbu mashqlar lingvist olimlar tavsiyalari orqali tuzib chiqilgan.</div>
-    </div>
-    <div class="motiv-card">
-      <div class="motiv-num">02</div>
-      <div class="motiv-title">Tajribadan o'tgan.</div>
-      <div class="motiv-desc">Dasturni o'qigan o'quvchilar birinchi haftadayoq 2–3 daqiqa rus tilida to'xtamay gapira olgan.</div>
-    </div>
-  </div>
-</section>
-
-<!-- FUNNEL (ilova ichidagi bir kunlik yo'l) -->
-<section class="funnel fade-in">
-  <div class="tag" style="display:block;text-align:center">ILOVADA</div>
-  <h2 class="section-title">Bir kun ichida nima qilasiz?</h2>
-  <p class="section-sub">Har bir kun 4 ta ko'nikma orqali quriladi</p>
-  <div class="funnel-list">
-    <div class="funnel-item">
-      <span class="funnel-num">1</span>
-      <span class="funnel-text">Lug'at — to'plamlar va mashqlar</span>
-    </div>
-    <div class="funnel-item">
-      <span class="funnel-num">2</span>
-      <span class="funnel-text">Audio mashq — audirovanie + test</span>
-    </div>
-    <div class="funnel-item">
-      <span class="funnel-num">3</span>
-      <span class="funnel-text">Gapirish — taqlid, savollar, AI suhbat</span>
-    </div>
-    <div class="funnel-item">
-      <span class="funnel-num">4</span>
-      <span class="funnel-text">Grammatika — hayotiy konstruksiyalar</span>
+    <div class="bonus-card">
+      <span class="bonus-icon">🎥</span>
+      <div class="bonus-title">2 haftada bir marta jonli dars</div>
     </div>
   </div>
 </section>
@@ -513,43 +371,6 @@ section{padding:56px 20px}
     <div class="price-final">699 000 so'm</div>
     <div class="price-note">Bu — hammasi emas, bonuslar bilan birga</div>
     <div class="price-urgency">⏳ Narx tez orada oshadi</div>
-  </div>
-</section>
-
-<!-- BONUS -->
-<section class="bonuses fade-in">
-  <div class="tag" style="display:block;text-align:center">BONUS</div>
-  <h2 class="section-title">Dasturni xarid qilganlar uchun bonuslar</h2>
-  <p class="section-sub">Hoziroq joyingizni band qilib quyidagilarni bonus sifatida qo'lga kiriting</p>
-  <div class="bonus-grid">
-    <div class="bonus-card">
-      <span class="bonus-icon">📱</span>
-      <div class="bonus-title">Zamira Russian ilovasi — 60 kunlik to'liq dastur</div>
-    </div>
-    <div class="bonus-card">
-      <span class="bonus-icon">🤖</span>
-      <div class="bonus-title">AI suhbatdosh — istalgan vaqt amaliyot</div>
-    </div>
-    <div class="bonus-card">
-      <span class="bonus-icon">📚</span>
-      <div class="bonus-title">Rus tili BAZA kursi — gap tuzish formulalari</div>
-    </div>
-    <div class="bonus-card">
-      <span class="bonus-icon">🎥</span>
-      <div class="bonus-title">2 haftada bir marta jonli dars</div>
-    </div>
-    <div class="bonus-card">
-      <span class="bonus-icon">👥</span>
-      <div class="bonus-title">Yopiq guruh — savollar va qo'llab-quvvatlash</div>
-    </div>
-    <div class="bonus-card">
-      <span class="bonus-icon">🎤</span>
-      <div class="bonus-title">Razgovor imtihoni — AI yoki ustoz bilan</div>
-    </div>
-    <div class="bonus-card">
-      <span class="bonus-icon">✅</span>
-      <div class="bonus-title">Mashqlarni bajarish jadvali (Treker)</div>
-    </div>
   </div>
 </section>
 
