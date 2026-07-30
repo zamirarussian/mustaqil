@@ -32,6 +32,10 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);font-
 @keyframes buttonPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
 @keyframes urgencyPulse{0%,100%{opacity:1}50%{opacity:.55}}
 
+/* UCHUVCHI QALAM */
+#flying-pencil{position:fixed;top:0;left:0;font-size:30px;pointer-events:none;z-index:9999;will-change:transform;filter:drop-shadow(0 4px 10px rgba(37,99,235,0.35))}
+@media(pointer:coarse){#flying-pencil{display:none}}
+
 nav{background:var(--bg);border-bottom:1px solid var(--border);padding:14px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
 .nav-brand{font-size:18px;font-weight:800;color:var(--text);display:flex;align-items:center;gap:8px}
 .nav-logo{width:30px;height:30px;border-radius:9px;background:var(--primary);display:flex;align-items:center;justify-content:center;flex-shrink:0}
@@ -188,6 +192,8 @@ section{padding:56px 20px}
 </style>
 </head>
 <body>
+
+<div id="flying-pencil">✏️</div>
 
 <!-- NAV -->
 <nav>
@@ -460,6 +466,40 @@ window.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => animateCount(el), 350);
   });
 });
+
+// Uchuvchi qalam — sichqonchaga yumshoq lag bilan ergashadi
+(function(){
+  const pencil = document.getElementById('flying-pencil');
+  if(!pencil || window.matchMedia('(pointer: coarse)').matches) return;
+  let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
+  let posX = mouseX, posY = mouseY;
+  let angle = -45;
+  let active = false;
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    if(!active){ posX = mouseX; posY = mouseY; active = true; pencil.style.opacity = '1'; }
+  });
+  document.addEventListener('mouseleave', () => { pencil.style.opacity = '0'; });
+  document.addEventListener('mouseenter', () => { pencil.style.opacity = '1'; });
+  pencil.style.opacity = '0';
+  pencil.style.transition = 'opacity .3s ease';
+
+  function loop(){
+    const dx = mouseX - posX;
+    const dy = mouseY - posY;
+    posX += dx * 0.14;
+    posY += dy * 0.14;
+    const dist = Math.sqrt(dx*dx + dy*dy);
+    if(dist > 1.5){
+      const targetAngle = Math.atan2(dy, dx) * 180 / Math.PI + 45;
+      angle += (targetAngle - angle) * 0.15;
+    }
+    pencil.style.transform = `translate(${posX}px, ${posY}px) translate(-50%, -60%) rotate(${angle}deg)`;
+    requestAnimationFrame(loop);
+  }
+  requestAnimationFrame(loop);
+})();
 </script>
 </body>
 </html>
