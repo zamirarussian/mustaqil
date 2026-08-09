@@ -34,7 +34,6 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);font-
 
 /* UCHUVCHI QALAM */
 #flying-pencil{position:fixed;top:0;left:0;font-size:52px;pointer-events:none;z-index:9999;will-change:transform;filter:drop-shadow(0 6px 14px rgba(37,99,235,0.4))}
-@media(pointer:coarse){#flying-pencil{display:none}}
 
 nav{background:var(--bg);border-bottom:1px solid var(--border);padding:14px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
 .nav-brand{font-size:18px;font-weight:800;color:var(--text);display:flex;align-items:center;gap:8px}
@@ -152,26 +151,42 @@ section{padding:56px 20px}
 
 /* NARX */
 .pricing{background:var(--bg)}
-.price-wrap{position:relative;max-width:420px;margin:0 auto}
-.price-glow{position:absolute;inset:-30px;background:radial-gradient(circle,rgba(37,99,235,0.28),transparent 70%);filter:blur(22px);animation:glowPulse 3s ease-in-out infinite;z-index:0;pointer-events:none}
 @keyframes glowPulse{0%,100%{opacity:.45;transform:scale(1)}50%{opacity:.85;transform:scale(1.1)}}
-.price-badge{position:absolute;top:-20px;right:-16px;width:74px;height:74px;z-index:3;pointer-events:none}
-.price-badge-ring{width:100%;height:100%;border-radius:50%;border:2px dashed var(--primary);animation:spinBadge 7s linear infinite}
 @keyframes spinBadge{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
-.price-badge-text{position:absolute;inset:0;margin:auto;width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--primary-hover));color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;line-height:1.05;box-shadow:0 6px 20px rgba(37,99,235,0.45)}
-.price-badge-text .badge-pct{font-size:14px;font-weight:900}
-.price-badge-text .badge-label{font-size:7.5px;font-weight:800;letter-spacing:.4px;margin-top:1px}
+.plans-wrap{display:grid;grid-template-columns:1fr 1fr;gap:22px;max-width:820px;margin:0 auto}
+@media(max-width:680px){.plans-wrap{grid-template-columns:1fr}}
+.plan-card{position:relative;border-radius:var(--radius);padding:30px 26px;border:1px solid var(--border);background:var(--section-bg);text-align:left}
+.plan-card.featured{background:linear-gradient(160deg,var(--primary),var(--primary-hover));border-color:var(--primary-hover);color:#fff}
+.plan-label{font-size:12px;font-weight:900;letter-spacing:.6px;text-transform:uppercase;padding:5px 12px;border-radius:20px;display:inline-block;margin-bottom:16px}
+.plan-card:not(.featured) .plan-label{background:var(--light-blue);color:var(--primary)}
+.plan-card.featured .plan-label{background:rgba(255,255,255,0.22);color:#fff}
+.plan-title{font-size:18px;font-weight:900;margin-bottom:4px;color:var(--text)}
+.plan-card.featured .plan-title{color:#fff}
+.plan-desc{font-size:13px;color:var(--text-secondary);font-weight:600;margin-bottom:18px}
+.plan-card.featured .plan-desc{color:rgba(255,255,255,0.8)}
+.plan-price{font-size:32px;font-weight:900;color:var(--primary);margin-bottom:18px}
+.plan-period{font-size:13px;font-weight:600;color:var(--text-secondary)}
+.plan-card.featured .plan-period{color:rgba(255,255,255,0.75)}
+.plan-card.featured .plan-price{color:#fff}
+.plan-features{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:0}
+.plan-features li{font-size:14px;font-weight:600;display:flex;align-items:flex-start;gap:8px;line-height:1.4;color:var(--text)}
+.plan-card.featured .plan-features li{color:rgba(255,255,255,0.95)}
+.plan-features li::before{content:'✓';font-weight:900;color:var(--success);flex-shrink:0;margin-top:1px}
+.plan-card.featured .plan-features li::before{color:#86efac}
+.plans-wrap{position:relative}
+.plan-glow{position:absolute;inset:-24px;background:radial-gradient(circle,rgba(37,99,235,0.22),transparent 70%);filter:blur(20px);animation:glowPulse 3s ease-in-out infinite;z-index:0;pointer-events:none}
+.plan-badge{position:absolute;top:-18px;right:14px;width:66px;height:66px;z-index:3;pointer-events:none}
+.plan-badge-ring{width:100%;height:100%;border-radius:50%;border:2px dashed #fff;opacity:.7;animation:spinBadge 7s linear infinite}
+.plan-badge-text{position:absolute;inset:0;margin:auto;width:50px;height:50px;border-radius:50%;background:#fff;color:var(--primary);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;line-height:1.05;box-shadow:0 6px 16px rgba(0,0,0,0.25)}
+.plan-badge-text .badge-pct{font-size:12px;font-weight:900}
+.plan-badge-text .badge-label{font-size:6.5px;font-weight:800;letter-spacing:.3px;margin-top:1px}
 .sparkle{position:absolute;font-size:20px;z-index:2;pointer-events:none;animation:sparkleFloat 3s ease-in-out infinite}
-.sparkle-1{top:-14px;left:-22px;animation-delay:0s}
-.sparkle-2{bottom:6px;right:-26px;animation-delay:1s;font-size:18px}
-.sparkle-3{top:45%;left:-32px;animation-delay:.5s;font-size:16px}
-.sparkle-4{bottom:-16px;left:20%;animation-delay:1.5s;font-size:18px}
+.sparkle-1{top:-14px;left:-16px;animation-delay:0s}
+.sparkle-2{bottom:6px;right:-18px;animation-delay:1s;font-size:18px}
+.sparkle-3{top:45%;left:-24px;animation-delay:.5s;font-size:16px}
+.sparkle-4{bottom:-16px;left:30%;animation-delay:1.5s;font-size:18px}
 @keyframes sparkleFloat{0%,100%{transform:translateY(0) rotate(0deg) scale(1);opacity:.55}50%{transform:translateY(-12px) rotate(18deg) scale(1.15);opacity:1}}
-.price-box{position:relative;z-index:1;max-width:420px;margin:0 auto;background:var(--section-bg);border:1px solid var(--border);border-radius:var(--radius);padding:36px 28px;text-align:center;color:var(--text);box-shadow:0 4px 16px rgba(17,24,39,0.05)}
-.price-old{font-size:18px;font-weight:700;color:var(--text-secondary);text-decoration:line-through;margin-bottom:6px}
-.price-mid{font-size:22px;font-weight:700;color:var(--text-secondary);text-decoration:line-through;margin-bottom:10px}
-.price-final{font-size:44px;font-weight:900;color:var(--primary);background:var(--light-blue);border:1px solid #c7dbfb;border-radius:16px;padding:14px 10px;margin-bottom:8px}
-.price-note{font-size:13px;color:var(--text-secondary);font-weight:600}
+.price-urgency{margin-top:22px;font-size:13.5px;font-weight:800;color:var(--primary);background:var(--light-blue);border:1px solid #c7dbfb;border-radius:30px;padding:8px 16px;display:block;width:fit-content;margin-left:auto;margin-right:auto;animation:urgencyPulse 1.8s ease-in-out infinite}
 .price-urgency{margin-top:14px;font-size:13.5px;font-weight:800;color:var(--primary);background:var(--light-blue);border:1px solid #c7dbfb;border-radius:30px;padding:8px 16px;display:inline-block;animation:urgencyPulse 1.8s ease-in-out infinite}
 
 /* CTA */
@@ -362,7 +377,7 @@ section{padding:56px 20px}
   <p class="section-sub">Darajangizga qarab — 60 kundan keyin qanday natijaga chiqishingizni ko'ring</p>
   <div class="results-wrap">
     <div class="level-card a1">
-      <span class="level-label">A1 → A2</span>
+      <span class="level-label">A1-A2</span>
       <p class="level-condition">Agar hozirgi darajangiz A1–A2 bo'lsa, 60 kundan keyin:</p>
       <h3>Kundalik hayotda erkin</h3>
       <ul class="result-list">
@@ -374,7 +389,7 @@ section{padding:56px 20px}
       </ul>
     </div>
     <div class="level-card b1">
-      <span class="level-label">B1 → B2</span>
+      <span class="level-label">B1-B2</span>
       <p class="level-condition">Agar hozirgi darajangiz B1–B2 bo'lsa, 60 kundan keyin:</p>
       <h3>Ishonch bilan gapirish</h3>
       <ul class="result-list">
@@ -415,25 +430,49 @@ section{padding:56px 20px}
 <!-- NARX -->
 <section class="pricing fade-in">
   <div class="tag" style="display:block;text-align:center">NARXI QANCHA?</div>
-  <p class="section-sub">Hoziroq yozilib, chegirmali narxdan foydalaning</p>
-  <div class="price-wrap">
-    <div class="price-glow"></div>
-    <span class="sparkle sparkle-1">✨</span>
-    <span class="sparkle sparkle-2">🔥</span>
-    <span class="sparkle sparkle-3">⭐</span>
-    <span class="sparkle sparkle-4">💫</span>
-    <div class="price-badge">
-      <div class="price-badge-ring"></div>
-      <div class="price-badge-text"><span class="badge-pct">-74%</span><span class="badge-label">CHEGIRMA</span></div>
+  <h2 class="section-title">O'zingizga mos formatni tanlang</h2>
+  <p class="section-sub">Mustaqil o'rganing yoki kurator hamrohligida — tanlov sizniki</p>
+  <div class="plans-wrap">
+    <div class="plan-glow"></div>
+
+    <div class="plan-card">
+      <span class="plan-label">MUSTAQIL</span>
+      <div class="plan-title">O'zingiz uchun</div>
+      <div class="plan-desc">O'z tezligingizda, mustaqil o'rganing</div>
+      <div class="plan-price">699 000 so'm <span class="plan-period">/ 2 oy uchun</span></div>
+      <ul class="plan-features">
+        <li>60 kunlik to'liq ilova</li>
+        <li>AI suhbatdosh — istalgan vaqt</li>
+        <li>2 haftada bir jonli dars</li>
+        <li>Rus tili BAZA kursi</li>
+      </ul>
     </div>
-    <div class="price-box">
-      <div class="price-old">2 699 000 so'm</div>
-      <div class="price-mid">1 699 000 so'm</div>
-      <div class="price-final">699 000 so'm</div>
-      <div class="price-note">Bu — hammasi emas, bonuslar bilan birga</div>
-      <div class="price-urgency">⏳ Narx tez orada oshadi</div>
+
+    <div class="plan-card featured">
+      <span class="sparkle sparkle-1">✨</span>
+      <span class="sparkle-2 sparkle">🔥</span>
+      <span class="sparkle-3 sparkle">⭐</span>
+      <span class="sparkle-4 sparkle">💫</span>
+      <div class="plan-badge">
+        <div class="plan-badge-ring"></div>
+        <div class="plan-badge-text"><span class="badge-pct">VIP</span><span class="badge-label">TAVSIYA</span></div>
+      </div>
+      <span class="plan-label">BIRGALIKDA</span>
+      <div class="plan-title">Nazorat va yordam bilan</div>
+      <div class="plan-desc">Kurator hamrohligida, tez natija uchun</div>
+      <div class="plan-price">1 199 000 so'm <span class="plan-period">/ 2 oy uchun</span></div>
+      <ul class="plan-features">
+        <li>Mustaqil rejadagi barcha imkoniyatlar</li>
+        <li>Haftada 2 marta jonli dars (kurator)</li>
+        <li>Har kuni uyga vazifa</li>
+        <li>Vazifalar tekshiruvi</li>
+        <li>Personal tavsiyalar</li>
+        <li>Haftalik imtihon</li>
+      </ul>
     </div>
+
   </div>
+  <div class="price-urgency">⏳ Narx tez orada oshadi</div>
 </section>
 
 <!-- CTA -->
@@ -467,21 +506,38 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// Uchuvchi qalam — sichqonchaga yumshoq lag bilan ergashadi
+// Uchuvchi qalam — sichqoncha yoki barmoqqa yumshoq lag bilan ergashadi
 (function(){
   const pencil = document.getElementById('flying-pencil');
-  if(!pencil || window.matchMedia('(pointer: coarse)').matches) return;
+  if(!pencil) return;
+  const isTouch = window.matchMedia('(pointer: coarse)').matches;
   let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
   let posX = mouseX, posY = mouseY;
   let angle = -45;
   let active = false;
-  document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-    if(!active){ posX = mouseX; posY = mouseY; active = true; pencil.style.opacity = '1'; }
-  });
-  document.addEventListener('mouseleave', () => { pencil.style.opacity = '0'; });
-  document.addEventListener('mouseenter', () => { pencil.style.opacity = '1'; });
+
+  if(isTouch){
+    document.addEventListener('touchstart', handleTouch, {passive:true});
+    document.addEventListener('touchmove', handleTouch, {passive:true});
+    document.addEventListener('touchend', () => { pencil.style.opacity = '0'; active = false; });
+    function handleTouch(e){
+      const t = e.touches[0];
+      if(!t) return;
+      mouseX = t.clientX;
+      mouseY = t.clientY;
+      if(!active){ posX = mouseX; posY = mouseY; active = true; }
+      pencil.style.opacity = '1';
+    }
+  } else {
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      if(!active){ posX = mouseX; posY = mouseY; active = true; pencil.style.opacity = '1'; }
+    });
+    document.addEventListener('mouseleave', () => { pencil.style.opacity = '0'; });
+    document.addEventListener('mouseenter', () => { pencil.style.opacity = '1'; });
+  }
+
   pencil.style.opacity = '0';
   pencil.style.transition = 'opacity .3s ease';
 
