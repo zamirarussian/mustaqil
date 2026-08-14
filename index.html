@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Zamira Russian — 60 kunlik dastur</title>
+<title>Rus tilida gapirishga chiqish uchun maxsus reja — Zamira Russian</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -12,501 +12,679 @@
 :root{
   --primary:#2563EB;
   --primary-hover:#1D4ED8;
-  --bg:#FFFFFF;
-  --section-bg:#F8FAFC;
-  --light-blue:#EFF6FF;
+  --primary-light:#EFF6FF;
   --text:#111827;
   --text-secondary:#6B7280;
   --border:#E5E7EB;
   --success:#22C55E;
-  --success-light:#EFFBF3;
-  --radius:16px;
-  --radius-sm:12px;
+  --success-light:#F0FDF4;
+  --danger:#EF4444;
+  --danger-light:#FEF2F2;
+  --amber:#F59E0B;
+  --amber-light:#FFFBEB;
+  --teal:#0D9488;
+  --teal-light:#F0FDFA;
+  --violet:#7C3AED;
+  --violet-light:#F5F3FF;
+  --radius:20px;
 }
 html{scroll-behavior:smooth}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);font-size:16px;line-height:1.6}
+body{font-family:'Inter',sans-serif;background:#fff;color:var(--text);font-size:16px;line-height:1.65}
 
-@keyframes floatBlob{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-10px,-16px) scale(1.05)}}
-@keyframes heroUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-@keyframes ctaPulse{0%,100%{box-shadow:0 8px 28px rgba(37,99,235,0.25);transform:scale(1)}50%{box-shadow:0 10px 40px rgba(37,99,235,0.4);transform:scale(1.045)}}
-@keyframes buttonPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
-@keyframes urgencyPulse{0%,100%{opacity:1}50%{opacity:.55}}
+#scrollbar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--primary),var(--violet));width:0%;z-index:1000;transition:width .1s linear}
 
-/* UCHUVCHI QALAM */
-#flying-pencil{position:fixed;top:0;left:0;font-size:52px;pointer-events:none;z-index:9999;will-change:transform;filter:drop-shadow(0 6px 14px rgba(37,99,235,0.4))}
+nav{background:rgba(255,255,255,0.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:14px 22px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:999}
+.nav-brand{font-size:17px;font-weight:800;color:var(--text);display:flex;align-items:center;gap:8px}
+.nav-logo{width:28px;height:28px;border-radius:8px;background:var(--primary);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.nav-logo::before{content:'';width:13px;height:13px;background:
+  linear-gradient(#fff,#fff) 0 0/5.5px 5.5px no-repeat,
+  linear-gradient(#fff,#fff) 7.5px 0/5.5px 5.5px no-repeat,
+  linear-gradient(#fff,#fff) 0 7.5px/5.5px 5.5px no-repeat,
+  linear-gradient(#fff,#fff) 7.5px 7.5px/5.5px 5.5px no-repeat}
+.nav-cta{background:var(--primary);color:#fff;border:none;padding:10px 20px;border-radius:10px;font-size:13.5px;font-weight:800;cursor:pointer;text-decoration:none;transition:transform .15s,background .15s}
+.nav-cta:hover{background:var(--primary-hover);transform:translateY(-1px)}
 
-nav{background:var(--bg);border-bottom:1px solid var(--border);padding:14px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
-.nav-brand{font-size:18px;font-weight:800;color:var(--text);display:flex;align-items:center;gap:8px}
-.nav-logo{width:30px;height:30px;border-radius:9px;background:var(--primary);display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.nav-logo::before{content:'';width:14px;height:14px;background:
-  linear-gradient(#fff,#fff) 0 0/6px 6px no-repeat,
-  linear-gradient(#fff,#fff) 8px 0/6px 6px no-repeat,
-  linear-gradient(#fff,#fff) 0 8px/6px 6px no-repeat,
-  linear-gradient(#fff,#fff) 8px 8px/6px 6px no-repeat;
-  opacity:.95}
-.nav-cta{background:var(--primary);color:#fff;border:none;padding:9px 20px;border-radius:10px;font-family:'Inter',sans-serif;font-size:14px;font-weight:700;cursor:pointer;text-decoration:none;transition:background .15s ease;animation:buttonPulse 2s ease-in-out infinite;transform-origin:center}
-.nav-cta:hover{background:var(--primary-hover);animation-play-state:paused;transform:scale(1.06)}
+/* stage progress dots (top, shows which of 8 stages) */
+.stage-dots{display:flex;justify-content:center;gap:7px;padding:14px 0;background:#fff;border-bottom:1px solid var(--border);position:sticky;top:57px;z-index:998}
+.stage-dots .d{width:7px;height:7px;border-radius:50%;background:var(--border);transition:background .3s,transform .3s}
+.stage-dots .d.on{background:var(--primary);transform:scale(1.3)}
 
-.hero{background:linear-gradient(180deg,#ffffff 0%,#EFF6FF 100%);color:var(--text);padding:64px 20px 72px;text-align:center;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;top:-70px;right:-60px;width:320px;height:320px;border-radius:50%;background:rgba(37,99,235,0.08);pointer-events:none;animation:floatBlob 9s ease-in-out infinite}
-.hero::after{content:'';position:absolute;bottom:-90px;left:-50px;width:260px;height:260px;border-radius:50%;background:rgba(37,99,235,0.06);pointer-events:none;animation:floatBlob 11s ease-in-out infinite reverse}
-.hero-badge{display:inline-block;background:var(--light-blue);border:1px solid #c7dbfb;color:var(--primary);padding:6px 16px;border-radius:30px;font-size:13px;font-weight:700;margin-bottom:20px;letter-spacing:0.3px;animation:heroUp .6s ease both;animation-delay:.05s;position:relative}
-.hero h1{font-size:clamp(26px,6.5vw,42px);font-weight:900;line-height:1.18;margin-bottom:18px;max-width:600px;margin-left:auto;margin-right:auto;color:var(--text);animation:heroUp .6s ease both;animation-delay:.15s;position:relative}
-.hero h1 span{color:var(--primary)}
-.hero-sub{font-size:15px;color:var(--text-secondary);max-width:440px;margin:0 auto 32px;font-weight:500;animation:heroUp .6s ease both;animation-delay:.25s;position:relative}
-.hero-stats{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:36px;animation:heroUp .6s ease both;animation-delay:.35s;position:relative}
-.hero-stat{background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:16px 22px;text-align:center;min-width:108px;box-shadow:0 2px 8px rgba(17,24,39,0.04);transition:transform .2s ease,box-shadow .2s ease}
-.hero-stat:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(17,24,39,0.08)}
-.hero-stat-icon{font-size:20px;display:block;margin-bottom:6px}
-.hero-stat-num{font-size:26px;font-weight:900;color:var(--primary);display:block;margin-bottom:2px}
-.hero-stat-label{font-size:11.5px;color:var(--text-secondary);font-weight:700;text-transform:uppercase;letter-spacing:0.5px}
-.hero-btn{display:inline-block;background:var(--primary);color:#fff;padding:16px 40px;border-radius:12px;font-size:16px;font-weight:800;text-decoration:none;box-shadow:0 8px 24px rgba(37,99,235,0.3);transition:background .15s;position:relative;transform-origin:center;
-  animation-name:heroUp,buttonPulse;
-  animation-duration:.6s,2s;
-  animation-timing-function:ease,ease-in-out;
-  animation-delay:.45s,1.1s;
-  animation-iteration-count:1,infinite;
-  animation-fill-mode:both,none;}
-.hero-btn:hover{background:var(--primary-hover);animation-play-state:running,paused;transform:translateY(-2px) scale(1.04)}
-.hero-note{font-size:13px;color:var(--text-secondary);margin-top:14px;animation:heroUp .6s ease both;animation-delay:.55s;position:relative}
+section{padding:76px 20px;position:relative;overflow:hidden}
+.wrap{max-width:720px;margin:0 auto;position:relative;z-index:1}
+.badge{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,0.7);border:1px solid rgba(0,0,0,0.06);padding:6px 16px;border-radius:30px;font-size:12px;font-weight:800;letter-spacing:.4px;margin-bottom:18px}
+.stage-title{font-size:clamp(24px,5vw,36px);font-weight:900;text-align:center;margin-bottom:12px;line-height:1.25}
+.stage-sub{text-align:center;color:var(--text-secondary);font-size:15.5px;font-weight:600;max-width:480px;margin:0 auto 44px}
+.center{text-align:center}
 
-section{padding:56px 20px}
-.section-title{font-size:clamp(22px,5vw,32px);font-weight:900;text-align:center;margin-bottom:8px;color:var(--text)}
-.section-sub{text-align:center;color:var(--text-secondary);font-size:15px;font-weight:500;margin-bottom:36px;max-width:500px;margin-left:auto;margin-right:auto}
-.tag{display:inline-block;background:var(--light-blue);color:var(--primary);padding:5px 14px;border-radius:30px;font-size:12px;font-weight:800;letter-spacing:0.5px;margin-bottom:16px}
+@keyframes floatBlob{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-14px,-18px) scale(1.06)}}
+@keyframes heroUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+@keyframes ctaPulse{0%,100%{box-shadow:0 8px 28px rgba(37,99,235,0.3);transform:scale(1)}50%{box-shadow:0 14px 44px rgba(37,99,235,0.5);transform:scale(1.035)}}
+@keyframes wiggle{0%,100%{transform:rotate(0)}25%{transform:rotate(-6deg)}75%{transform:rotate(6deg)}}
+@keyframes sparkleFloat{0%,100%{transform:translateY(0) rotate(0deg) scale(1);opacity:.6}50%{transform:translateY(-10px) rotate(15deg) scale(1.15);opacity:1}}
+@keyframes glowPulse{0%,100%{opacity:.4;transform:scale(1)}50%{opacity:.8;transform:scale(1.08)}}
 
-/* MUAMMO */
-.problems{background:var(--bg)}
-.problems-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;max-width:900px;margin:0 auto}
-.prob-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:transform 0.2s,box-shadow 0.2s,border-color .2s}
-.prob-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(17,24,39,.08);border-color:#c7dbfb}
-.prob-top{padding:20px 22px 18px;background:var(--section-bg);display:flex;gap:14px;align-items:flex-start}
-.prob-eyebrow{font-size:11px;font-weight:900;letter-spacing:0.8px;color:var(--text-secondary);margin-bottom:4px;display:block}
-.prob-icon{font-size:26px;flex-shrink:0;line-height:1}
-.prob-text{font-size:14.5px;font-weight:700;color:var(--text);line-height:1.45}
-.prob-arrow{display:flex;justify-content:center;align-items:center;background:var(--bg);position:relative;height:0}
-.prob-arrow span{position:absolute;top:-15px;width:30px;height:30px;border-radius:50%;background:var(--bg);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--text-secondary)}
-.prob-bottom{padding:22px 22px 20px;background:var(--light-blue);display:flex;gap:14px;align-items:flex-start}
-.prob-bottom .prob-eyebrow{color:var(--primary)}
-.prob-bottom .prob-text{color:var(--primary-hover);font-weight:700}
-.problems-grid .prob-card{opacity:0;transform:translateY(20px);transition:opacity .55s ease,transform .55s ease,box-shadow .2s ease}
-.problems.visible .prob-card{opacity:1;transform:translateY(0)}
-.problems.visible .prob-card:nth-child(1){transition-delay:.05s}
-.problems.visible .prob-card:nth-child(2){transition-delay:.15s}
-.problems.visible .prob-card:nth-child(3){transition-delay:.25s}
-.problems.visible .prob-card:nth-child(4){transition-delay:.35s}
+.fx{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.fx.visible{opacity:1;transform:translateY(0)}
+.fx-child{opacity:0;transform:translateY(18px) scale(.97);transition:opacity .55s ease,transform .55s ease}
+.visible .fx-child{opacity:1;transform:translateY(0) scale(1)}
+.visible .fx-child:nth-child(1){transition-delay:.05s}
+.visible .fx-child:nth-child(2){transition-delay:.13s}
+.visible .fx-child:nth-child(3){transition-delay:.21s}
+.visible .fx-child:nth-child(4){transition-delay:.29s}
+.visible .fx-child:nth-child(5){transition-delay:.37s}
+.visible .fx-child:nth-child(6){transition-delay:.45s}
+.visible .fx-child:nth-child(7){transition-delay:.53s}
 
-/* KURS MAZMUNI */
-.content-section{background:var(--section-bg)}
-.content-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;max-width:900px;margin:0 auto}
-.content-card{background:var(--bg);border-radius:var(--radius);padding:24px 20px;border:1px solid var(--border);transition:transform 0.2s,box-shadow 0.2s,border-color .2s}
-.content-card:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(17,24,39,.08);border-color:#c7dbfb}
-.cc-icon{font-size:32px;margin-bottom:12px;display:block}
-.cc-title{font-size:16px;font-weight:800;color:var(--text);margin-bottom:6px}
-.cc-desc{font-size:13px;color:var(--text-secondary);font-weight:500;line-height:1.5}
-.content-grid .content-card{opacity:0;transform:translateY(20px);transition:opacity .55s ease,transform .55s ease,box-shadow .2s ease}
-.content-section.visible .content-card{opacity:1;transform:translateY(0)}
-.content-section.visible .content-card:nth-child(1){transition-delay:.05s}
-.content-section.visible .content-card:nth-child(2){transition-delay:.12s}
-.content-section.visible .content-card:nth-child(3){transition-delay:.19s}
-.content-section.visible .content-card:nth-child(4){transition-delay:.26s}
-.content-section.visible .content-card:nth-child(5){transition-delay:.33s}
-.content-section.visible .content-card:nth-child(6){transition-delay:.40s}
+/* ============ COVER ============ */
+.cover{background:linear-gradient(180deg,#fff 0%,#EFF6FF 100%);padding:70px 20px 56px;text-align:center}
+.cover::before{content:'';position:absolute;top:-80px;right:-70px;width:340px;height:340px;border-radius:50%;background:rgba(37,99,235,0.09);animation:floatBlob 9s ease-in-out infinite;pointer-events:none}
+.cover::after{content:'';position:absolute;bottom:-100px;left:-60px;width:280px;height:280px;border-radius:50%;background:rgba(124,58,237,0.07);animation:floatBlob 11s ease-in-out infinite reverse;pointer-events:none}
+.cover-badge{display:inline-block;background:var(--primary-light);border:1px solid #c7dbfb;color:var(--primary);padding:7px 18px;border-radius:30px;font-size:13px;font-weight:800;margin-bottom:22px;animation:heroUp .6s ease both .05s;position:relative}
+.cover h1{font-size:clamp(28px,6.5vw,46px);font-weight:900;line-height:1.2;margin-bottom:18px;max-width:640px;margin-left:auto;margin-right:auto;animation:heroUp .6s ease both .15s;position:relative}
+.cover h1 span{color:var(--primary)}
+.cover-sub{font-size:16px;color:var(--text-secondary);max-width:480px;margin:0 auto 38px;font-weight:600;animation:heroUp .6s ease both .25s;position:relative}
+.cover-sub b{color:var(--text);font-weight:800}
+.cover-btn{display:inline-block;background:var(--primary);color:#fff;padding:18px 42px;border-radius:14px;font-size:17px;font-weight:800;text-decoration:none;box-shadow:0 10px 30px rgba(37,99,235,0.3);transition:transform .15s,background .15s;animation:heroUp .6s ease both .35s,ctaPulse 2.4s ease-in-out infinite 1s;position:relative}
+.cover-btn:hover{background:var(--primary-hover);transform:translateY(-2px)}
+.scroll-hint{margin-top:44px;color:var(--text-secondary);font-size:13px;font-weight:700;animation:heroUp .6s ease both .45s;position:relative}
+.scroll-hint span{display:inline-block;font-size:20px;margin-left:6px;animation:bounce 1.8s ease-in-out infinite}
 
-/* NATIJA */
-.results{background:var(--bg)}
-.results-wrap{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:860px;margin:0 auto}
-@media(max-width:600px){.results-wrap{grid-template-columns:1fr}}
-.level-card{border-radius:var(--radius);padding:28px 22px;border:1px solid var(--border)}
-.level-card.a1{background:var(--light-blue);border-color:#c7dbfb}
-.level-card.b1{background:var(--primary);border-color:var(--primary)}
-.level-label{font-size:12px;font-weight:900;letter-spacing:1px;text-transform:uppercase;padding:4px 12px;border-radius:20px;display:inline-block;margin-bottom:14px}
-.a1 .level-label{background:#dbeafe;color:var(--primary-hover)}
-.b1 .level-label{background:rgba(255,255,255,0.2);color:#fff}
-.level-card h3{font-size:19px;font-weight:900;margin-bottom:16px;color:var(--text)}
-.b1 h3{color:#fff}
-.level-condition{font-size:13px;font-weight:600;margin-bottom:6px;opacity:0.8}
-.a1 .level-condition{color:var(--primary-hover)}
-.b1 .level-condition{color:rgba(255,255,255,0.8)}
-.result-list{list-style:none;display:flex;flex-direction:column;gap:10px}
-.result-list li{font-size:14px;font-weight:600;display:flex;align-items:flex-start;gap:8px;line-height:1.4}
-.a1 .result-list li{color:var(--text)}
-.b1 .result-list li{color:rgba(255,255,255,0.9)}
-.result-list li::before{content:'✓';font-weight:900;color:var(--success);flex-shrink:0;margin-top:1px}
-.b1 .result-list li::before{color:#86efac}
+/* ============ 1. MUAMMO (rose tint) ============ */
+.s1{background:var(--danger-light)}
+.blocker-path{position:relative;max-width:420px;margin:0 auto 40px;padding-left:6px}
+.bp-endpoint{display:flex;align-items:center;gap:12px;font-weight:900;font-size:16px;padding:14px 0;position:relative;z-index:1}
+.bp-endpoint .circle{width:44px;height:44px;border-radius:50%;background:#fff;border:2px solid var(--text);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.bp-endpoint.end .circle{border:2px dashed #fca5a5;background:#fef2f2;filter:grayscale(.3)}
+.bp-endpoint.end{color:var(--text-secondary);opacity:.75}
+.bp-line{position:absolute;left:28px;top:0;bottom:0;width:3px;background:repeating-linear-gradient(180deg,#fca5a5 0,#fca5a5 6px,transparent 6px,transparent 12px);z-index:0}
+.bp-blocker{position:relative;z-index:1;margin-left:58px;background:#fff;border:1.5px solid #fecaca;border-radius:14px;padding:12px 16px;font-size:13.5px;font-weight:700;color:#7f1d1d;box-shadow:0 3px 10px rgba(220,38,38,0.08);margin-bottom:10px;display:flex;align-items:center;gap:10px}
+.bp-blocker .x{width:24px;height:24px;border-radius:50%;background:var(--danger-light);color:var(--danger);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;flex-shrink:0;border:1px solid #fecaca}
+.bp-lock{text-align:center;font-size:12px;color:var(--text-secondary);font-weight:700;margin-top:4px}
+.obstacles{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;max-width:820px;margin:0 auto 34px}
+.obstacle{background:#fff;border:1px solid #fecaca;border-radius:16px;padding:16px 18px;display:flex;align-items:flex-start;gap:10px;font-size:14px;font-weight:700;color:#7f1d1d;box-shadow:0 3px 10px rgba(220,38,38,0.05);transition:transform .2s}
+.obstacle:hover{transform:translateY(-2px)}
+.insight-box{max-width:600px;margin:0 auto;background:linear-gradient(135deg,var(--text),#1f2937);border-radius:var(--radius);padding:32px 30px;text-align:center;color:#fff;box-shadow:0 12px 34px rgba(17,24,39,.2)}
+.insight-box .big{font-size:22px;font-weight:900;margin-bottom:8px}
+.insight-box .small{font-size:14.5px;font-weight:600;color:rgba(255,255,255,0.82);line-height:1.6}
 
-/* BONUS */
-.bonuses{background:var(--section-bg)}
-.bonus-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;max-width:900px;margin:0 auto}
-.bonus-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:24px 18px;text-align:center;transition:border-color .2s,box-shadow .2s,transform .2s}
-.bonus-card:hover{border-color:#c7dbfb;box-shadow:0 6px 18px rgba(17,24,39,.06);transform:translateY(-2px)}
-.bonus-icon{font-size:32px;margin-bottom:10px;display:block}
-.bonus-title{font-size:14px;font-weight:800;color:var(--text);line-height:1.4}
-.bonus-grid .bonus-card{opacity:0;transform:translateY(20px);transition:opacity .55s ease,transform .55s ease}
-.bonuses.visible .bonus-card{opacity:1;transform:translateY(0)}
-.bonuses.visible .bonus-card:nth-child(1){transition-delay:.05s}
-.bonuses.visible .bonus-card:nth-child(2){transition-delay:.15s}
-.bonuses.visible .bonus-card:nth-child(3){transition-delay:.25s}
-.bonuses.visible .bonus-card:nth-child(4){transition-delay:.35s}
+/* ============ 2. MODEL (indigo tint) ============ */
+.s2{background:var(--primary-light)}
+.layers{display:flex;flex-direction:column;align-items:center;gap:0;max-width:380px;margin:0 auto 36px}
+.layer{width:100%;background:#fff;border:1px solid #dbe4fb;border-radius:14px;padding:16px 20px;text-align:center;font-weight:800;font-size:15px;color:var(--text);box-shadow:0 3px 10px rgba(37,99,235,0.06)}
+.layer.goal{background:linear-gradient(135deg,var(--primary),var(--primary-hover));color:#fff;border-color:var(--primary);font-size:16px;box-shadow:0 8px 24px rgba(37,99,235,0.3)}
+.layer-arrow{font-size:17px;color:#93b4f5;padding:5px 0;font-weight:900}
+.baza-note{font-size:12px;color:var(--text-secondary);font-weight:600;text-align:center;padding:8px 20px 4px;line-height:1.5}
+.not-enough{display:flex;flex-direction:column;gap:9px;max-width:460px;margin:0 auto 30px}
+.not-enough div{font-size:14px;font-weight:600;color:var(--text-secondary);text-align:center}
+.not-enough b{color:var(--danger);text-decoration:line-through;font-weight:700}
+.conclusion{text-align:center;font-size:19px;font-weight:900;color:var(--text);max-width:500px;margin:0 auto}
 
-/* NARX */
-.pricing{background:var(--bg)}
-@keyframes glowPulse{0%,100%{opacity:.45;transform:scale(1)}50%{opacity:.85;transform:scale(1.1)}}
-@keyframes spinBadge{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
-.plans-wrap{display:grid;grid-template-columns:1fr 1fr;gap:22px;max-width:820px;margin:0 auto}
-@media(max-width:680px){.plans-wrap{grid-template-columns:1fr}}
-.plan-card{position:relative;border-radius:var(--radius);padding:30px 26px;border:1px solid var(--border);background:var(--section-bg);text-align:left}
-.plan-card.featured{background:linear-gradient(160deg,var(--primary),var(--primary-hover));border-color:var(--primary-hover);color:#fff}
-.plan-label{font-size:12px;font-weight:900;letter-spacing:.6px;text-transform:uppercase;padding:5px 12px;border-radius:20px;display:inline-block;margin-bottom:16px}
-.plan-card:not(.featured) .plan-label{background:var(--light-blue);color:var(--primary)}
-.plan-card.featured .plan-label{background:rgba(255,255,255,0.22);color:#fff}
-.plan-title{font-size:18px;font-weight:900;margin-bottom:4px;color:var(--text)}
-.plan-card.featured .plan-title{color:#fff}
-.plan-desc{font-size:13px;color:var(--text-secondary);font-weight:600;margin-bottom:18px}
-.plan-card.featured .plan-desc{color:rgba(255,255,255,0.8)}
-.plan-price{font-size:32px;font-weight:900;color:var(--primary);margin-bottom:18px}
-.plan-period{font-size:13px;font-weight:600;color:var(--text-secondary)}
-.plan-card.featured .plan-period{color:rgba(255,255,255,0.75)}
-.plan-card.featured .plan-price{color:#fff}
-.plan-features{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:0}
-.plan-features li{font-size:14px;font-weight:600;display:flex;align-items:flex-start;gap:8px;line-height:1.4;color:var(--text)}
-.plan-card.featured .plan-features li{color:rgba(255,255,255,0.95)}
-.plan-features li::before{content:'✓';font-weight:900;color:var(--success);flex-shrink:0;margin-top:1px}
-.plan-card.featured .plan-features li::before{color:#86efac}
-.plans-wrap{position:relative}
-.plan-glow{position:absolute;inset:-24px;background:radial-gradient(circle,rgba(37,99,235,0.22),transparent 70%);filter:blur(20px);animation:glowPulse 3s ease-in-out infinite;z-index:0;pointer-events:none}
-.plan-badge{position:absolute;top:-18px;right:14px;width:66px;height:66px;z-index:3;pointer-events:none}
-.plan-badge-ring{width:100%;height:100%;border-radius:50%;border:2px dashed #fff;opacity:.7;animation:spinBadge 7s linear infinite}
-.plan-badge-text{position:absolute;inset:0;margin:auto;width:50px;height:50px;border-radius:50%;background:#fff;color:var(--primary);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;line-height:1.05;box-shadow:0 6px 16px rgba(0,0,0,0.25)}
-.plan-badge-text .badge-pct{font-size:12px;font-weight:900}
-.plan-badge-text .badge-label{font-size:6.5px;font-weight:800;letter-spacing:.3px;margin-top:1px}
+/* ============ 3. ROADMAP (white, big) ============ */
+.s3{background:#fff}
+.roadmap{position:relative;max-width:520px;margin:0 auto 36px;padding-left:38px}
+.roadmap::before{content:'';position:absolute;left:14px;top:8px;bottom:8px;width:3px;background:linear-gradient(180deg,var(--primary),var(--violet));border-radius:3px;transform-origin:top;transform:scaleY(0);transition:transform 1.6s ease}
+.roadmap.visible::before{transform:scaleY(1)}
+.rm-step{position:relative;padding-bottom:24px}
+.rm-step:last-child{padding-bottom:0}
+.rm-dot{position:absolute;left:-38px;top:0;width:28px;height:28px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;box-shadow:0 0 0 5px var(--primary-light)}
+.rm-dot.start{background:var(--text-secondary);box-shadow:0 0 0 5px #f3f4f6}
+.rm-dot.goal{background:linear-gradient(135deg,var(--success),#16a34a);width:38px;height:38px;left:-43px;font-size:17px;box-shadow:0 0 0 5px var(--success-light)}
+.rm-card{background:#f8fafc;border:1px solid var(--border);border-radius:12px;padding:12px 16px;font-weight:700;font-size:14.5px;color:var(--text)}
+.rm-card .rm-sub{display:block;font-size:11.5px;font-weight:600;color:var(--text-secondary);margin-top:4px}
+.rm-card.start,.rm-card.goal{background:transparent;border:none;padding:3px 0 0;font-size:16px;font-weight:900}
+.rm-card.goal{color:var(--success);font-size:20px}
+.roadmap-quote{text-align:center;font-size:16.5px;font-weight:800;color:var(--primary);max-width:460px;margin:0 auto;font-style:italic}
+
+/* ============ 4. KUNLIK REJA (amber tint) ============ */
+.s4{background:var(--amber-light)}
+.daily-wrap{max-width:420px;margin:0 auto 30px}
+.daily-total{text-align:center;margin-bottom:22px}
+.daily-total .num{font-size:46px;font-weight:900;color:var(--amber)}
+.daily-total .lbl{font-size:13.5px;font-weight:800;color:var(--text-secondary);text-transform:uppercase;letter-spacing:.5px}
+.daily-item{display:flex;align-items:center;gap:14px;background:#fff;border:1px solid #fde68a;border-radius:14px;padding:13px 18px;margin-bottom:10px;box-shadow:0 2px 8px rgba(245,158,11,0.06)}
+.daily-time{background:var(--amber-light);color:var(--amber);font-weight:900;font-size:13px;padding:5px 10px;border-radius:8px;flex-shrink:0;min-width:56px;text-align:center;border:1px solid #fde68a}
+.daily-name{font-weight:800;font-size:14.5px;color:var(--text)}
+.daily-item.highlight{background:linear-gradient(135deg,var(--amber),#d97706);border-color:var(--amber)}
+.daily-item.highlight .daily-time{background:rgba(255,255,255,0.3);color:#fff;border-color:transparent}
+.daily-item.highlight .daily-name{color:#fff}
+.myth-box{max-width:460px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+.myth-line{font-size:14.5px;font-weight:700;padding:13px 18px;border-radius:12px;text-align:center}
+.myth-wrong{background:var(--danger-light);color:#991b1b;text-decoration:line-through;border:1px solid #fecaca}
+.myth-right{background:var(--success-light);color:#166534;border:1px solid #bbf7d0}
+
+/* ============ 5. MASHQ DARAJALARI (teal tint) ============ */
+.s5{background:var(--teal-light)}
+.levels{display:flex;flex-direction:column;gap:14px;max-width:600px;margin:0 auto 26px}
+.level-item{background:#fff;border:1px solid #99f6e4;border-radius:var(--radius);padding:20px 22px;box-shadow:0 3px 10px rgba(13,148,136,0.06)}
+.level-num{display:inline-block;background:var(--teal);color:#fff;font-size:11px;font-weight:900;letter-spacing:.5px;padding:4px 12px;border-radius:20px;margin-bottom:10px}
+.level-desc{font-size:14.5px;font-weight:800;color:var(--text);margin-bottom:10px}
+.level-ru{background:var(--teal-light);border:1px dashed #5eead4;border-radius:8px;padding:10px 14px;font-size:14.5px;color:#0f766e;font-weight:600;font-style:italic}
+.level-ru + .level-ru{margin-top:6px}
+.level-arrow-ru{font-size:13px;color:var(--text-secondary);font-weight:700;margin:4px 0}
+.level-note{text-align:center;font-size:14.5px;color:var(--text-secondary);font-weight:600;max-width:480px;margin:0 auto}
+.level-note b{color:var(--text)}
+
+/* ============ 6. NATIJA (violet tint) ============ */
+.s6{background:var(--violet-light)}
+.natija-wrap{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:760px;margin:0 auto 30px}
+@media(max-width:640px){.natija-wrap{grid-template-columns:1fr}}
+.natija-card{background:#fff;border:1.5px solid #ddd6fe;border-radius:24px;padding:28px 26px;box-shadow:0 6px 20px rgba(124,58,237,0.08)}
+.natija-card.pro{background:linear-gradient(160deg,var(--violet),#5b21b6);border-color:var(--violet);color:#fff;box-shadow:0 12px 34px rgba(124,58,237,0.3)}
+.nj-icon{font-size:34px;margin-bottom:12px}
+.nj-tag{font-size:12px;font-weight:900;letter-spacing:.4px;text-transform:uppercase;color:var(--violet);margin-bottom:10px}
+.natija-card.pro .nj-tag{color:#e9d5ff}
+.nj-title{font-size:18px;font-weight:900;margin-bottom:16px;color:var(--text);line-height:1.3}
+.natija-card.pro .nj-title{color:#fff}
+.nj-list{list-style:none;display:flex;flex-direction:column;gap:9px}
+.nj-list li{font-size:13.5px;font-weight:600;color:var(--text-secondary);display:flex;align-items:flex-start;gap:8px;line-height:1.4}
+.nj-list li::before{content:'✓';color:var(--success);font-weight:900;flex-shrink:0}
+.natija-card.pro .nj-list li{color:rgba(255,255,255,0.92)}
+.natija-card.pro .nj-list li::before{color:#86efac}
+.dream-banner{position:relative;max-width:600px;margin:0 auto;text-align:center;background:linear-gradient(135deg,var(--primary-light),var(--violet-light));border:1px solid #ddd6fe;border-radius:20px;padding:24px 30px;font-size:15.5px;font-weight:800;color:var(--text)}
+.db-sparkle{position:absolute;font-size:18px;animation:sparkleFloat 3s ease-in-out infinite}
+.db1{top:-10px;left:16px}
+.db2{bottom:-10px;right:20px;animation-delay:1s}
+
+/* ============ 7. ENG KATTA XATO ============ */
+.s7{background:#fff}
+.mistake-wrap{display:grid;grid-template-columns:1fr 1fr;gap:22px;max-width:680px;margin:0 auto 30px}
+@media(max-width:600px){.mistake-wrap{grid-template-columns:1fr}}
+.mistake-card{border-radius:var(--radius);padding:22px 20px;border:1px solid var(--border)}
+.mistake-card.bad{background:var(--danger-light);border-color:#fecaca}
+.mistake-card.good{background:var(--success-light);border-color:#bbf7d0}
+.mistake-title{font-size:14px;font-weight:900;margin-bottom:16px;display:flex;align-items:center;gap:6px}
+.mistake-card.bad .mistake-title{color:#991b1b}
+.mistake-card.good .mistake-title{color:#166534}
+.bars{display:flex;align-items:flex-end;gap:8px;height:100px;margin-bottom:14px}
+.bar{flex:1;border-radius:5px 5px 0 0;transform:scaleY(0);transform-origin:bottom;transition:transform .8s ease}
+.visible .bar{transform:scaleY(1)}
+.mistake-card.bad .bar{background:#f87171}
+.mistake-card.good .bar{background:#4ade80}
+.bar-lbl{display:flex;gap:8px;font-size:10px;font-weight:700;color:var(--text-secondary)}
+.bar-lbl span{flex:1;text-align:center}
+.mistake-note{font-size:13px;font-weight:700;text-align:center;margin-top:12px}
+.mistake-card.bad .mistake-note{color:#991b1b}
+.mistake-card.good .mistake-note{color:#166534}
+.mistake-footer{text-align:center;font-size:14.5px;color:var(--text-secondary);font-weight:600;max-width:480px;margin:0 auto}
+.mistake-footer b{color:var(--text)}
+
+/* ============ 8. FINAL OFFER — premium product reveal ============ */
+.s8{background:linear-gradient(180deg,#F8FAFC 0%,var(--primary-light) 100%)}
+.bridge{max-width:520px;margin:0 auto 34px;text-align:center}
+.bridge p{font-size:15px;color:var(--text-secondary);font-weight:600;margin-bottom:10px}
+.bridge .pivot{font-size:20px;font-weight:900;color:var(--text);margin-top:16px}
+
+.problem-block{max-width:600px;margin:0 auto 44px;text-align:center}
+.problem-title{font-size:18px;font-weight:800;color:var(--text);margin-bottom:22px}
+.problem-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:26px}
+@media(max-width:520px){.problem-grid{grid-template-columns:1fr}}
+.problem-card{background:var(--danger-light);border:1px solid #fecaca;border-radius:14px;padding:14px 16px;font-size:14px;font-weight:700;color:#7f1d1d;display:flex;align-items:center;gap:10px;text-align:left}
+.problem-card .pnum{width:22px;height:22px;border-radius:50%;background:var(--danger);color:#fff;font-size:12px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.pivot{font-size:18px;font-weight:900;color:var(--primary)}
+
+.price-block{max-width:480px;margin:0 auto 30px;background:#fff;border:1px solid var(--border);border-radius:22px;padding:30px 28px;text-align:center;box-shadow:0 6px 20px rgba(17,24,39,0.06)}
+.price-title{font-size:13px;font-weight:900;color:var(--text-secondary);text-transform:uppercase;letter-spacing:.6px;margin-bottom:18px}
+.price-includes{display:flex;flex-direction:column;gap:8px;margin-bottom:22px;text-align:left;max-width:300px;margin-left:auto;margin-right:auto}
+.price-includes div{font-size:14px;font-weight:600;color:var(--text-secondary)}
+.price-original{background:#f8fafc;border:1px solid var(--border);border-radius:14px;padding:18px 20px;margin-bottom:18px}
+.po-label{font-size:12px;font-weight:800;color:var(--text-secondary);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+.po-amount{font-size:30px;font-weight:900;color:var(--text)}
+.price-arrow{font-size:20px;color:var(--text-secondary);margin-bottom:14px}
+.price-special-block{background:var(--primary-light);border:1.5px solid #bfd7fb;border-radius:16px;padding:20px}
+.ps-label{font-size:13.5px;font-weight:800;color:var(--primary);margin-bottom:8px}
+.price-old-crossed{font-size:18px;font-weight:700;color:var(--text-secondary);text-decoration:line-through;margin-bottom:6px}
+.ps-amount{font-size:40px;font-weight:900;color:var(--primary)}
+
+.bonus-block{max-width:480px;margin:0 auto 44px;background:linear-gradient(135deg,var(--amber-light),#fff7ed);border:1px solid #fde68a;border-radius:22px;padding:26px 26px;text-align:center}
+.bonus-title{font-size:19px;font-weight:900;color:var(--text);margin-bottom:8px}
+.bonus-sub{font-size:13.5px;color:var(--text-secondary);font-weight:600;margin-bottom:18px}
+.bonus-sub b{color:#b45309;font-weight:900}
+.bonus-list{display:flex;flex-direction:column;gap:9px}
+.bonus-total{margin-top:16px;font-size:14px;font-weight:800;color:#b45309;background:#fff;border:1px dashed #f59e0b;border-radius:12px;padding:10px 14px}
+.bonus-total span{font-size:15px}
+.bonus-row{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#fff;border:1px solid #fde68a;border-radius:12px;padding:11px 16px}
+.bo-name{font-size:13.5px;font-weight:700;color:var(--text);text-align:left;flex:1}
+.bo-old{font-size:12.5px;color:var(--text-secondary);text-decoration:line-through;flex-shrink:0}
+.bo-free{background:var(--amber);color:#fff;font-size:11px;font-weight:900;padding:4px 10px;border-radius:20px;flex-shrink:0}
+
+.offer-wrap{position:relative;max-width:560px;margin:0 auto 40px}
+.offer-glow{position:absolute;inset:-30px;background:radial-gradient(circle,rgba(37,99,235,0.25),transparent 70%);filter:blur(24px);animation:glowPulse 3s ease-in-out infinite;z-index:0;pointer-events:none}
 .sparkle{position:absolute;font-size:20px;z-index:2;pointer-events:none;animation:sparkleFloat 3s ease-in-out infinite}
-.sparkle-1{top:-14px;left:-16px;animation-delay:0s}
-.sparkle-2{bottom:6px;right:-18px;animation-delay:1s;font-size:18px}
-.sparkle-3{top:45%;left:-24px;animation-delay:.5s;font-size:16px}
-.sparkle-4{bottom:-16px;left:30%;animation-delay:1.5s;font-size:18px}
-@keyframes sparkleFloat{0%,100%{transform:translateY(0) rotate(0deg) scale(1);opacity:.55}50%{transform:translateY(-12px) rotate(18deg) scale(1.15);opacity:1}}
-.price-urgency{margin-top:22px;font-size:13.5px;font-weight:800;color:var(--primary);background:var(--light-blue);border:1px solid #c7dbfb;border-radius:30px;padding:8px 16px;display:block;width:fit-content;margin-left:auto;margin-right:auto;animation:urgencyPulse 1.8s ease-in-out infinite}
-.price-urgency{margin-top:14px;font-size:13.5px;font-weight:800;color:var(--primary);background:var(--light-blue);border:1px solid #c7dbfb;border-radius:30px;padding:8px 16px;display:inline-block;animation:urgencyPulse 1.8s ease-in-out infinite}
+.sparkle-1{top:-14px;left:-18px;animation-delay:0s}
+.sparkle-2{bottom:8px;right:-20px;animation-delay:1s;font-size:18px}
+.sparkle-3{top:40%;left:-26px;animation-delay:.5s;font-size:16px}
+.offer-card{position:relative;z-index:1;background:#fff;border:1px solid var(--border);border-radius:28px;padding:40px 32px;box-shadow:0 16px 50px rgba(17,24,39,0.12)}
+.offer-top-badge{position:absolute;top:-16px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--amber),#d97706);color:#fff;font-size:11.5px;font-weight:900;letter-spacing:.5px;padding:7px 18px;border-radius:20px;box-shadow:0 6px 16px rgba(245,158,11,0.4);white-space:nowrap}
+.offer-badge-main{text-align:center;font-size:27px;font-weight:900;color:var(--primary);margin-bottom:4px;margin-top:8px}
+.offer-sub{text-align:center;font-size:13.5px;font-weight:800;color:var(--text-secondary);margin-bottom:26px;text-transform:uppercase;letter-spacing:.5px}
+.offer-check-row{display:flex;gap:12px;align-items:flex-start;padding:13px 0;border-top:1px solid var(--border)}
+.offer-check-row:first-of-type{border-top:none}
+.offer-check-row .ic{width:24px;height:24px;border-radius:50%;background:var(--success-light);color:var(--success);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;flex-shrink:0;margin-top:1px}
+.offer-check-row .txt{font-size:14.5px;font-weight:700;color:var(--text);line-height:1.5}
+.offer-check-row .txt .dim{color:var(--text-secondary);font-weight:500;text-decoration:line-through;display:block;font-size:12.5px;margin-bottom:2px}
 
-/* CTA */
-.cta-section{background:linear-gradient(135deg,var(--primary),var(--primary-hover));text-align:center;padding:70px 20px}
-.cta-section h2{font-size:clamp(22px,5vw,34px);font-weight:900;color:#fff;margin-bottom:16px;max-width:500px;margin-left:auto;margin-right:auto}
-.cta-big-btn{display:inline-block;background:#fff;color:var(--primary);padding:18px 48px;border-radius:12px;font-size:17px;font-weight:900;text-decoration:none;box-shadow:0 8px 28px rgba(0,0,0,0.15);transition:background .15s;font-family:'Inter',sans-serif;border:none;cursor:pointer;margin-top:8px;animation:ctaPulse 2.4s ease-in-out infinite;transform-origin:center}
-.cta-big-btn:hover{transform:translateY(-2px) scale(1.04);background:var(--light-blue);animation-play-state:paused}
+.final-cta{background:linear-gradient(135deg,var(--primary),var(--violet));text-align:center;padding:70px 24px;border-radius:28px;max-width:800px;margin:0 auto;position:relative;overflow:hidden}
+.final-cta::before{content:'';position:absolute;top:-60px;right:-40px;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,0.08);animation:floatBlob 8s ease-in-out infinite}
+.final-cta h2{font-size:clamp(22px,4.5vw,30px);font-weight:900;color:#fff;margin-bottom:10px;max-width:520px;margin-left:auto;margin-right:auto;position:relative}
+.final-cta .sub{color:rgba(255,255,255,0.85);font-size:15px;font-weight:600;margin-bottom:30px;position:relative}
+.final-btn{display:inline-block;background:#fff;color:var(--primary);padding:19px 46px;border-radius:14px;font-size:17px;font-weight:900;text-decoration:none;box-shadow:0 10px 30px rgba(0,0,0,0.2);transition:transform .15s;animation:ctaPulse 2.4s ease-in-out infinite;position:relative}
+.final-btn:hover{transform:translateY(-2px) scale(1.03)}
+.feature-row{display:flex;flex-wrap:wrap;justify-content:center;gap:9px;margin-top:32px;position:relative}
+.feature-chip{background:rgba(255,255,255,0.16);border:1px solid rgba(255,255,255,0.28);color:#fff;font-size:12.5px;font-weight:700;padding:8px 15px;border-radius:20px}
 
-.fade-in{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease}
-.fade-in.visible{opacity:1;transform:translateY(0)}
+footer{text-align:center;padding:34px 20px;color:var(--text-secondary);font-size:12.5px;font-weight:600;background:#fff}
+
+#flying-pencil{position:fixed;top:0;left:0;font-size:44px;pointer-events:none;z-index:9999;will-change:transform;filter:drop-shadow(0 6px 14px rgba(37,99,235,0.35));opacity:0;transition:opacity .3s ease}
 
 @media(max-width:480px){
-  .hero{padding:48px 16px 56px}
-  .hero-stats{flex-direction:row}
-  .hero-stat{flex:1;padding:12px 8px}
-  section{padding:44px 16px}
+  section{padding:56px 16px}
+  .cover{padding:56px 16px 40px}
 }
 </style>
 </head>
 <body>
 
+<div id="scrollbar"></div>
 <div id="flying-pencil">✏️</div>
 
-<!-- NAV -->
 <nav>
   <span class="nav-brand"><span class="nav-logo"></span> Zamira Russian</span>
-  <a href="https://forms.gle/XLyYghpNjpuFgxxd9" class="nav-cta">Dasturga yozilish</a>
+  <a href="https://t.me/m/OD0WXa9HY2My" target="_blank" class="nav-cta">Boshlash →</a>
 </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-badge">60 kunlik to'liq dastur</div>
-  <h1>Ruscha tushunasiz lekin <span>gapirolmayapsizmi?</span></h1>
-  <p class="hero-sub">60 kunlik dastur orqali taqlid, AI suhbatdosh va razgovorniy klub bilan birinchi kundan gapirish amaliyotini boshlaysiz.</p>
-  <div class="hero-stats">
-    <div class="hero-stat">
-      <span class="hero-stat-icon">📅</span>
-      <span class="hero-stat-num" data-target="60">0</span>
-      <span class="hero-stat-label">kun</span>
-    </div>
-    <div class="hero-stat">
-      <span class="hero-stat-icon">📖</span>
-      <span class="hero-stat-num" data-target="1800" data-suffix="+">0</span>
-      <span class="hero-stat-label">so'z va ibora</span>
-    </div>
-    <div class="hero-stat">
-      <span class="hero-stat-icon">🗣️</span>
-      <span class="hero-stat-num" data-target="25" data-suffix="+">0</span>
-      <span class="hero-stat-label">hayotiy vaziyat</span>
-    </div>
-  </div>
-  <a href="https://forms.gle/XLyYghpNjpuFgxxd9" class="hero-btn">Dasturga yozilish →</a>
-  <p class="hero-note">A1 dan B2 gacha birga chiqamiz.</p>
+<div class="stage-dots" id="stageDots">
+  <div class="d" data-target="stage1"></div>
+  <div class="d" data-target="stage2"></div>
+  <div class="d" data-target="stage3"></div>
+  <div class="d" data-target="stage4"></div>
+  <div class="d" data-target="stage5"></div>
+  <div class="d" data-target="stage6"></div>
+  <div class="d" data-target="stage7"></div>
+  <div class="d" data-target="stage8"></div>
+</div>
+
+<!-- ============ COVER ============ -->
+<section class="cover">
+  <div class="cover-badge">🗺️ Rus tilida gapirishga chiqish uchun maxsus reja</div>
+  <h1>Rus tilini tushunib lekin javob qaytarolmasangiz,<br><span>bu reja siz uchun!</span></h1>
+  <p class="cover-sub"><b>Muammo sizda emas, muammo siz to'g'ri mashq qilolmayotganingizda.</b></p>
+  <a href="#stage1" class="cover-btn">🚀 Rejani boshlash</a>
+  <div class="scroll-hint">Pastga tushing, xarita boshlanadi<span>↓</span></div>
 </section>
 
-<!-- MUAMMO -->
-<section class="problems fade-in">
-  <div class="tag" style="display:block;text-align:center">MUAMMO</div>
-  <h2 class="section-title">Shu muammolar sizga ham tanishmi?</h2>
-  <p class="section-sub">Eng ko'p uchraydigan muammolar va bizning dasturdagi yechim 👇</p>
-  <div class="problems-grid">
+<!-- ============ 1. NEGA GAPIRA OLMAYSIZ ============ -->
+<section class="s1 fx" id="stage1">
+  <div class="wrap">
+    <div class="center"><span class="badge" style="color:#b91c1c">1-BOSQICH · MUAMMO</span></div>
+    <h2 class="stage-title">Nega siz gapira olmayapsiz?</h2>
 
-    <div class="prob-card">
-      <div class="prob-top">
-        <div class="prob-icon">😶</div>
-        <div>
-          <span class="prob-eyebrow">MUAMMO</span>
-          <div class="prob-text">Ruscha bilaman, lekin gapirishga urinsam bironta gap kelmay qoladi.</div>
-        </div>
-      </div>
-      <div class="prob-arrow"><span>↓</span></div>
-      <div class="prob-bottom">
-        <div class="prob-icon">🗣️</div>
-        <div>
-          <span class="prob-eyebrow">YECHIM</span>
-          <div class="prob-text">Avval gapirish usuli — birinchi kundan boshlab barcha mashqlar gapirish orqali boshlanadi.</div>
-        </div>
-      </div>
+    <div class="blocker-path fx">
+      <div class="bp-line"></div>
+      <div class="bp-endpoint start"><span class="circle">😐</span> SIZ</div>
+
+      <div class="bp-blocker fx-child"><span class="x">✕</span> So'z bilaman, gap tuzolmayman</div>
+      <div class="bp-blocker fx-child"><span class="x">✕</span> Grammatikani bilaman, ishlata olmayman</div>
+      <div class="bp-blocker fx-child"><span class="x">✕</span> Ruscha eshitsam, hammasi tez tuyuladi</div>
+      <div class="bp-blocker fx-child"><span class="x">✕</span> Gapirishga kelganda kerakli so'z esimga kelmaydi</div>
+      <div class="bp-blocker fx-child"><span class="x">✕</span> Xato qilishdan qo'rqaman</div>
+
+      <div class="bp-endpoint end"><span class="circle">🔒</span> Rus tilida suhbat</div>
+      <div class="bp-lock">5 ta to'siq yo'lni to'sib turibdi</div>
     </div>
 
-    <div class="prob-card">
-      <div class="prob-top">
-        <div class="prob-icon">🔁</div>
-        <div>
-          <span class="prob-eyebrow">MUAMMO</span>
-          <div class="prob-text">Miyada o'zbekchadan tarjima qilaman, juda sekin gapiraman.</div>
-        </div>
-      </div>
-      <div class="prob-arrow"><span>↓</span></div>
-      <div class="prob-bottom">
-        <div class="prob-icon">⚡</div>
-        <div>
-          <span class="prob-eyebrow">YECHIM</span>
-          <div class="prob-text">Maxsus tezlik mashqlari — tarjimasiz o'ylashni o'rgatadi.</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="prob-card">
-      <div class="prob-top">
-        <div class="prob-icon">🏠</div>
-        <div>
-          <span class="prob-eyebrow">MUAMMO</span>
-          <div class="prob-text">Amaliyot qilishga sherik yo'q, nima qilsam bo'ladi?</div>
-        </div>
-      </div>
-      <div class="prob-arrow"><span>↓</span></div>
-      <div class="prob-bottom">
-        <div class="prob-icon">🤝</div>
-        <div>
-          <span class="prob-eyebrow">YECHIM</span>
-          <div class="prob-text">Razgovorniy klub va maxsus AI suhbatdosh — doim tayyor.</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="prob-card">
-      <div class="prob-top">
-        <div class="prob-icon">😰</div>
-        <div>
-          <span class="prob-eyebrow">MUAMMO</span>
-          <div class="prob-text">O'zimga ishonchim past, sekin o'ylanib gapiraman.</div>
-        </div>
-      </div>
-      <div class="prob-arrow"><span>↓</span></div>
-      <div class="prob-bottom">
-        <div class="prob-icon">💪</div>
-        <div>
-          <span class="prob-eyebrow">YECHIM</span>
-          <div class="prob-text">Ishonch va tezlik mashqlari — bosim ostida gapirish odatini shakllantiradi.</div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- KURS MAZMUNI -->
-<section class="content-section fade-in">
-  <div class="tag" style="display:block;text-align:center">DASTURDA</div>
-  <h2 class="section-title">Har kuni nima qilasiz?</h2>
-  <p class="section-sub">Lug'at, grammatika va tinglashdan — gapirishgacha, hammasi bir joyda</p>
-  <div class="content-grid">
-
-    <div class="content-card">
-      <span class="cc-icon">🗣️</span>
-      <div class="cc-title">Gapirish mashqlari</div>
-      <div class="cc-desc">Birinchi kundan boshlab taqlid, savollar va rolli o'yinlar orqali gapirasiz.</div>
-    </div>
-
-    <div class="content-card">
-      <span class="cc-icon">💬</span>
-      <div class="cc-title">AI suhbatdosh</div>
-      <div class="cc-desc">Kuniga istalgan vaqt sun'iy intellekt bilan ruscha suhbatlashib amaliyot qilasiz.</div>
-    </div>
-
-    <div class="content-card">
-      <span class="cc-icon">📖</span>
-      <div class="cc-title">Lug'at va grammatika</div>
-      <div class="cc-desc">Tayyor iboralar orqali o'rganasiz — grammatika o'z-o'zidan singiydi.</div>
-    </div>
-
-    <div class="content-card">
-      <span class="cc-icon">🎧</span>
-      <div class="cc-title">Tinglash va o'qish</div>
-      <div class="cc-desc">Haqiqiy ruslar suhbatini eshitib, matnlar orqali tushunishni oshirasiz.</div>
-    </div>
-
-    <div class="content-card">
-      <span class="cc-icon">👥</span>
-      <div class="cc-title">Razgovorniy klub</div>
-      <div class="cc-desc">Jonli chatda faqat rus tilida gapirib, haqiqiy odamlar bilan amaliyot qilasiz.</div>
-    </div>
-
-    <div class="content-card">
-      <span class="cc-icon">🎬</span>
-      <div class="cc-title">Videodarslar</div>
-      <div class="cc-desc">Zamira Turganbaeva tomonidan eng muhim mavzularda maxsus yozilgan darslar.</div>
-    </div>
-
-  </div>
-</section>
-
-<!-- NATIJA -->
-<section class="results fade-in">
-  <div class="tag" style="display:block;text-align:center">NATIJA</div>
-  <h2 class="section-title">60 kun o'tgach nimalarga erishasiz?</h2>
-  <p class="section-sub">Darajangizga qarab — 60 kundan keyin qanday natijaga chiqishingizni ko'ring</p>
-  <div class="results-wrap">
-    <div class="level-card a1">
-      <span class="level-label">A1-A2</span>
-      <p class="level-condition">Agar hozirgi darajangiz A1–A2 bo'lsa, 60 kundan keyin:</p>
-      <h3>Kundalik hayotda erkin</h3>
-      <ul class="result-list">
-        <li>Tanishish va suhbatni davom ettirish</li>
-        <li>Kafe, do'kon va transportda muloqot</li>
-        <li>Shifokorga murojaat qilish</li>
-        <li>5–10 daqiqa tayyorliksiz gapirish</li>
-        <li>1800–2500 so'zlik lug'at boyligi</li>
-      </ul>
-    </div>
-    <div class="level-card b1">
-      <span class="level-label">B1-B2</span>
-      <p class="level-condition">Agar hozirgi darajangiz B1–B2 bo'lsa, 60 kundan keyin:</p>
-      <h3>Ishonch bilan gapirish</h3>
-      <ul class="result-list">
-        <li>25+ hayotiy vaziyatda dialog olib borish</li>
-        <li>Fikrini erkin, tarjimasiz ifoda etish</li>
-        <li>Uzoq suhbatni ushlab turish</li>
-        <li>Jonli nutqni tushunish</li>
-        <li>Tayyorliksiz suhbatni boshlash</li>
-      </ul>
+    <div class="insight-box fx-child">
+      <div class="big">💡 Muammo sizda emas.</div>
+      <div class="small">Sizga rus tilini bilish emas, rus tilida nutq chiqarishni mashq qilish kerak.</div>
     </div>
   </div>
 </section>
 
-<!-- BONUS -->
-<section class="bonuses fade-in">
-  <div class="tag" style="display:block;text-align:center">BONUS</div>
-  <h2 class="section-title">Hoziroq yozilganlar uchun bonuslar</h2>
-  <div class="bonus-grid">
-    <div class="bonus-card">
-      <span class="bonus-icon">📱</span>
-      <div class="bonus-title">Zamira Russian ilovasi — 60 kunlik to'liq dastur</div>
+<!-- ============ 2. QANDAY QURILADI ============ -->
+<section class="s2 fx" id="stage2">
+  <div class="wrap">
+    <div class="center"><span class="badge" style="color:var(--primary)">2-BOSQICH · MODEL</span></div>
+    <h2 class="stage-title">Rus tilida gapirish qanday quriladi?</h2>
+    <p class="stage-sub">5 ta qavat — har biri keyingisiga xizmat qiladi</p>
+
+    <div class="layers">
+      <div class="layer fx-child">🧱 1. Baza</div>
+      <div class="baza-note fx-child">Rus tilining eng muhim grammatik mavzulari: fe'l zamonlari, kelishiklar, otlarning jinsi, so'z tartibi, asosiy olmoshlar</div>
+      <div class="layer-arrow fx-child">↓</div>
+      <div class="layer fx-child">📖 2. Lug'at</div>
+      <div class="layer-arrow fx-child">↓</div>
+      <div class="layer fx-child">🧩 3. Gap formulalari</div>
+      <div class="layer-arrow fx-child">↓</div>
+      <div class="layer fx-child">🎧 4. Tinglash</div>
+      <div class="layer-arrow fx-child">↓</div>
+      <div class="layer goal fx-child">🗣️ 5. Gapirish 🏆</div>
     </div>
-    <div class="bonus-card">
-      <span class="bonus-icon">🎙️</span>
-      <div class="bonus-title">AI suhbatdosh — istalgan vaqt amaliyot</div>
-    </div>
-    <div class="bonus-card">
-      <span class="bonus-icon">📚</span>
-      <div class="bonus-title">Rus tili BAZA kursi — gap tuzish formulalari</div>
-    </div>
-    <div class="bonus-card">
-      <span class="bonus-icon">🎥</span>
-      <div class="bonus-title">2 haftada bir marta jonli dars</div>
+
+    <div class="not-enough">
+      <div><b>Faqat lug'at o'rganish</b> → gapirishga olib kelmaydi.</div>
+      <div><b>Faqat grammatika</b> → gapirishga olib kelmaydi.</div>
+      <div><b>Faqat video ko'rish</b> → gapirishga olib kelmaydi.</div>
     </div>
   </div>
 </section>
 
-<!-- NARX -->
-<section class="pricing fade-in">
-  <div class="tag" style="display:block;text-align:center">NARXI QANCHA?</div>
-  <h2 class="section-title">O'zingizga mos formatni tanlang</h2>
-  <p class="section-sub">Mustaqil o'rganing yoki kurator hamrohligida — tanlov sizniki</p>
-  <div class="plans-wrap">
-    <div class="plan-glow"></div>
+<!-- ============ 3. 0 → GAPIRISH ============ -->
+<section class="s3 fx" id="stage3">
+  <div class="wrap">
+    <div class="center"><span class="badge" style="color:var(--primary)">3-BOSQICH · YO'L XARITASI</span></div>
+    <h2 class="stage-title">0 → Gapirish</h2>
+    <p class="stage-sub">Bitta katta sakrash emas — 7 ta kichik qadam</p>
 
-    <div class="plan-card">
-      <span class="plan-label">MUSTAQIL</span>
-      <div class="plan-title">O'zingiz uchun</div>
-      <div class="plan-desc">O'z tezligingizda, mustaqil o'rganing</div>
-      <div class="plan-price">699 000 so'm <span class="plan-period">/ 2 oy uchun</span></div>
-      <ul class="plan-features">
-        <li>60 kunlik to'liq ilova</li>
-        <li>AI suhbatdosh — istalgan vaqt</li>
-        <li>2 haftada bir jonli dars</li>
-        <li>Rus tili BAZA kursi</li>
-      </ul>
+    <div class="roadmap fx">
+      <div class="rm-step">
+        <div class="rm-dot start">🏁</div>
+        <div class="rm-card start">START — 0-kun</div>
+      </div>
+      <div class="rm-step">
+        <div class="rm-dot">1</div>
+        <div class="rm-card">Rus tilining bazasini qurish<span class="rm-sub">fe'l zamonlari, kelishiklar, asosiy qoidalar</span></div>
+      </div>
+      <div class="rm-step">
+        <div class="rm-dot">2</div>
+        <div class="rm-card">Eng kerakli so'zlarni yodlash</div>
+      </div>
+      <div class="rm-step">
+        <div class="rm-dot">3</div>
+        <div class="rm-card">Tayyor gap formulalarini o'zlashtirish</div>
+      </div>
+      <div class="rm-step">
+        <div class="rm-dot">4</div>
+        <div class="rm-card">Tushunishni o'rganish</div>
+      </div>
+      <div class="rm-step">
+        <div class="rm-dot">5</div>
+        <div class="rm-card">Gaplarni mustaqil tuzish</div>
+      </div>
+      <div class="rm-step">
+        <div class="rm-dot">6</div>
+        <div class="rm-card">Savollarga javob berish</div>
+      </div>
+      <div class="rm-step">
+        <div class="rm-dot">7</div>
+        <div class="rm-card">1–2 daqiqa ruscha gapirish</div>
+      </div>
+      <div class="rm-step">
+        <div class="rm-dot goal">🏆</div>
+        <div class="rm-card goal">GAPIRISH</div>
+      </div>
     </div>
 
-    <div class="plan-card featured">
+    <p class="roadmap-quote fx-child">"Birdaniga ravon gapirish emas, muhimi siz gapirishni boshlashingiz kerak."</p>
+  </div>
+</section>
+
+<!-- ============ 4. HAR KUNI NIMA QILISH KERAK ============ -->
+<section class="s4 fx" id="stage4">
+  <div class="wrap">
+    <div class="center"><span class="badge" style="color:#b45309">4-BOSQICH · KUNLIK REJA</span></div>
+    <h2 class="stage-title">Har kuni nima qilish kerak?</h2>
+    <p class="stage-sub">Nazariyadan amaliyotga o'tamiz</p>
+
+    <div class="daily-wrap">
+      <div class="daily-total fx-child">
+        <div class="num">20–30</div>
+        <div class="lbl">daqiqa / kuniga</div>
+      </div>
+      <div class="daily-item fx-child"><span class="daily-time">5 daq</span><span class="daily-name">📚 Lug'at</span></div>
+      <div class="daily-item fx-child"><span class="daily-time">5 daq</span><span class="daily-name">🧩 Gap formulasi</span></div>
+      <div class="daily-item fx-child"><span class="daily-time">5 daq</span><span class="daily-name">🎧 Tinglash</span></div>
+      <div class="daily-item highlight fx-child"><span class="daily-time">10 daq</span><span class="daily-name">🗣️ Gapirish</span></div>
+    </div>
+
+    <div class="myth-box">
+      <div class="myth-line myth-wrong fx-child">"Men kuniga 2 soat vaqt topishim kerak ekan..."</div>
+      <div class="myth-line myth-right fx-child">Yo'q. Kuniga 20–30 daqiqadan boshlang.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. GAPIRISHNI QANDAY MASHQ QILAMIZ ============ -->
+<section class="s5 fx" id="stage5">
+  <div class="wrap">
+    <div class="center"><span class="badge" style="color:var(--teal)">5-BOSQICH · MASHQ DARAJALARI</span></div>
+    <h2 class="stage-title">Gapirishni qanday mashq qilamiz?</h2>
+    <p class="stage-sub">4 ta bosqich — kichikdan kattaga</p>
+
+    <div class="levels">
+      <div class="level-item fx-child">
+        <span class="level-num">DARAJA 1</span>
+        <div class="level-desc">🎧 Eshit → Takrorla</div>
+        <div class="level-ru">Я работаю в Ташкенте.</div>
+      </div>
+      <div class="level-item fx-child">
+        <span class="level-num">DARAJA 2</span>
+        <div class="level-desc">🔄 Tayyor gapni o'zgartir</div>
+        <div class="level-ru">Я работаю в Ташкенте.</div>
+        <div class="level-ru">Я работаю в Москве.</div>
+        <div class="level-ru">Я работаю дома.</div>
+      </div>
+      <div class="level-item fx-child">
+        <span class="level-num">DARAJA 3</span>
+        <div class="level-desc">💬 Savolga javob ber</div>
+        <div class="level-ru">Где вы работаете?</div>
+        <div class="level-arrow-ru">↓</div>
+        <div class="level-ru">Я работаю в...</div>
+      </div>
+      <div class="level-item fx-child">
+        <span class="level-num">DARAJA 4</span>
+        <div class="level-desc">🗣️ Mustaqil gapir</div>
+        <div class="level-ru">Расскажите о своей работе.</div>
+      </div>
+    </div>
+
+    <p class="level-note">Gapirish — birdaniga <b>"erkin gapirish"</b> emas. Gapirish kichik-kichik mashqlar orqali avtomatlashtiriladi.</p>
+  </div>
+</section>
+
+<!-- ============ 6. NATIJA ============ -->
+<section class="s6 fx" id="stage6">
+  <div class="wrap" style="max-width:820px">
+    <div class="center"><span class="badge" style="color:var(--violet)">6-BOSQICH · NATIJA</span></div>
+    <h2 class="stage-title">60 kun shu mashqlarni qilsangiz —<br>natija shunday bo'ladi</h2>
+    <p class="stage-sub">Tasavvur qiling: siz allaqachon shunday gaplasha olasiz</p>
+
+    <div class="natija-wrap">
+      <div class="natija-card fx-child">
+        <div class="nj-icon">🌱</div>
+        <div class="nj-tag">Agar 0 dan boshlasangiz</div>
+        <div class="nj-title">Kundalik hayotda erkin gaplasha olasiz</div>
+        <ul class="nj-list">
+          <li>Tanishish va suhbatni davom ettirish</li>
+          <li>Kafe, do'kon, transportda muloqot</li>
+          <li>Shifokorga murojaat qilish</li>
+          <li>5–10 daqiqa tayyorliksiz gapirish</li>
+        </ul>
+      </div>
+      <div class="natija-card pro fx-child">
+        <div class="nj-icon">🚀</div>
+        <div class="nj-tag">Agar o'rtacha darajada bo'lsangiz</div>
+        <div class="nj-title">Ishonch bilan, erkin gaplashasiz</div>
+        <ul class="nj-list">
+          <li>25+ hayotiy vaziyatda dialog olib borish</li>
+          <li>Tarjimasiz fikringizni bildirish</li>
+          <li>Jonli nutqni tushunish</li>
+          <li>Tayyorliksiz suhbatni boshlash</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="dream-banner fx-child">
+      <span class="db-sparkle db1">✨</span>
+      <span class="db-sparkle db2">⭐</span>
+      🎉 60-kundan keyin ruscha erkin so'zlashayotganingizni tasavvur qiling — bu orzu emas, aniq reja.
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7. ENG KATTA XATO ============ -->
+<section class="s7 fx" id="stage7">
+  <div class="wrap">
+    <div class="center"><span class="badge" style="color:var(--text-secondary)">7-BOSQICH · ASOSIY XATO</span></div>
+    <h2 class="stage-title">Eng katta xato</h2>
+    <p class="stage-sub">Ko'pchilik shu yerda to'xtab qoladi</p>
+
+    <div class="mistake-wrap">
+      <div class="mistake-card bad fx-child">
+        <div class="mistake-title">❌ Motivatsiya kelishini kutish</div>
+        <div class="bars">
+          <div class="bar" style="height:100%"></div>
+          <div class="bar" style="height:33%"></div>
+          <div class="bar" style="height:3%"></div>
+          <div class="bar" style="height:3%"></div>
+          <div class="bar" style="height:3%"></div>
+        </div>
+        <div class="bar-lbl"><span>1-kun</span><span>2-kun</span><span>3-kun</span><span>4-kun</span><span>5-kun</span></div>
+        <div class="mistake-note">"Ertadan boshlayman." 😂 → Keyin yangi kurs.</div>
+      </div>
+      <div class="mistake-card good fx-child">
+        <div class="mistake-title">✅ Kichik + har kuni + takror</div>
+        <div class="bars">
+          <div class="bar" style="height:70%"></div>
+          <div class="bar" style="height:70%"></div>
+          <div class="bar" style="height:70%"></div>
+          <div class="bar" style="height:70%"></div>
+          <div class="bar" style="height:70%"></div>
+        </div>
+        <div class="bar-lbl"><span>1-kun</span><span>2-kun</span><span>3-kun</span><span>4-kun</span><span>5-kun</span></div>
+        <div class="mistake-note">20 daqiqa × 60 kun</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ 8. FINAL OFFER ============ -->
+<section class="s8 fx" id="stage8">
+  <div class="wrap">
+
+    <div class="problem-block fx-child">
+      <p class="problem-title">Muammo: bu reja bilan o'zingiz dars qilaman desangiz —</p>
+      <div class="problem-grid">
+        <div class="problem-card"><span class="pnum">1</span> Materiallar topish qiyin</div>
+        <div class="problem-card"><span class="pnum">2</span> Mashqlar topish qiyin</div>
+        <div class="problem-card"><span class="pnum">3</span> Aniq bir reja bo'lmaydi</div>
+        <div class="problem-card"><span class="pnum">4</span> Intizom bo'lmaydi</div>
+      </div>
+      <p class="pivot">Shu muammolarni hal qilish uchun biz maxsus dastur ishlab chiqdik 👇</p>
+    </div>
+
+    <div class="offer-wrap fx-child">
+      <div class="offer-glow"></div>
       <span class="sparkle sparkle-1">✨</span>
-      <span class="sparkle-2 sparkle">🔥</span>
-      <span class="sparkle-3 sparkle">⭐</span>
-      <span class="sparkle-4 sparkle">💫</span>
-      <div class="plan-badge">
-        <div class="plan-badge-ring"></div>
-        <div class="plan-badge-text"><span class="badge-pct">VIP</span><span class="badge-label">TAVSIYA</span></div>
+      <span class="sparkle sparkle-2">⭐</span>
+      <span class="sparkle sparkle-3">💫</span>
+      <div class="offer-card">
+        <div class="offer-top-badge">🔥 60 KUNLIK TAYYOR TIZIM</div>
+        <div class="offer-badge-main">📚 Rus tili har kuni</div>
+        <div class="offer-sub">mashqlar to'plami</div>
+
+        <div class="offer-check-row">
+          <span class="ic">✓</span>
+          <span class="txt"><span class="dim">Siz reja tuzmaysiz</span>Har kuni tayyor dars</span>
+        </div>
+        <div class="offer-check-row">
+          <span class="ic">✓</span>
+          <span class="txt"><span class="dim">Siz material qidirmaysiz</span>Lug'at, formula, grammatika, audio, o'qish — hammasi tizimda</span>
+        </div>
+        <div class="offer-check-row">
+          <span class="ic">✓</span>
+          <span class="txt"><span class="dim">Siz yolg'iz gapirmaysiz</span>AI suhbatdosh bilan rus tilida mashq qilasiz</span>
+        </div>
+        <div class="offer-check-row">
+          <span class="ic">✓</span>
+          <span class="txt"><span class="dim">O'zingizni tekshirib yurmaysiz</span>Haftalik imtihonlar mavjud</span>
+        </div>
+        <div class="offer-check-row">
+          <span class="ic">✓</span>
+          <span class="txt"><span class="dim">Eng muhimi</span>Telegramning o'zida — hech narsa o'rnatish shart emas</span>
+        </div>
       </div>
-      <span class="plan-label">BIRGALIKDA</span>
-      <div class="plan-title">Nazorat va yordam bilan</div>
-      <div class="plan-desc">Kurator hamrohligida, tez natija uchun</div>
-      <div class="plan-price">1 199 000 so'm <span class="plan-period">/ 2 oy uchun</span></div>
-      <ul class="plan-features">
-        <li>Mustaqil rejadagi barcha imkoniyatlar</li>
-        <li>Haftada 2 marta jonli dars (kurator)</li>
-        <li>Har kuni uyga vazifa</li>
-        <li>Vazifalar tekshiruvi</li>
-        <li>Personal tavsiyalar</li>
-        <li>Haftalik imtihon</li>
-      </ul>
     </div>
 
+    <div class="price-block fx-child">
+      <p class="price-title">Narxi qancha?</p>
+      <div class="price-includes">
+        <div>✓ To'liq 60 kunlik dostup</div>
+        <div>✓ Har kuni tayyor mashqlar</div>
+        <div>✓ Mobil ilova (Telegram ichida)</div>
+        <div>✓ AI suhbatdosh</div>
+      </div>
+      <div class="price-original">
+        <div class="po-label">Asl narxi</div>
+        <div class="po-amount">1 699 000 so'm</div>
+      </div>
+      <div class="price-arrow">↓</div>
+      <div class="price-special-block">
+        <div class="ps-label">Lekin siz uchun maxsus taklif</div>
+        <div class="price-old-crossed">1 699 000 so'm</div>
+        <div class="ps-amount">699 000 so'm</div>
+      </div>
+    </div>
+
+    <div class="bonus-block fx-child">
+      <p class="bonus-title">🎁 Agar HOZIROQ to'lov qilsangiz</p>
+      <p class="bonus-sub">Quyidagilarni <b>BEPUL</b> qo'shib olasiz — menejerga hoziroq yozib joyingizni band qiling:</p>
+      <div class="bonus-list">
+        <div class="bonus-row"><span class="bo-name">Talaffuz kursi</span><span class="bo-old">500 000 so'm</span><span class="bo-free">BONUS</span></div>
+        <div class="bonus-row"><span class="bo-name">Baza kursi</span><span class="bo-old">300 000 so'm</span><span class="bo-free">BONUS</span></div>
+        <div class="bonus-row"><span class="bo-name">AI suhbatdosh</span><span class="bo-old">100 000 so'm</span><span class="bo-free">BONUS</span></div>
+      </div>
+      <div class="bonus-total">Jami bonus qiymati: <span>900 000 so'm</span> — sizga BEPUL 🎉</div>
+    </div>
+
+    <div class="final-cta fx-child">
+      <h2>Rus tilini "o'rganishni" emas,<br>rus tilida gapirishni boshlang.</h2>
+      <p class="sub">Hoziroq menejerga yozib, joyingizni band qiling</p>
+      <a href="https://t.me/m/OD0WXa9HY2My" target="_blank" class="final-btn">💬 Hoziroq menejerga yozish</a>
+      <div class="feature-row">
+        <span class="feature-chip">📚 tayyor darslar</span>
+        <span class="feature-chip">🗣️ gapirish mashqlari</span>
+        <span class="feature-chip">🧩 gap formulalari</span>
+        <span class="feature-chip">🎧 audirovanie</span>
+        <span class="feature-chip">🤖 AI suhbatdosh</span>
+        <span class="feature-chip">📝 haftalik imtihon</span>
+      </div>
+    </div>
   </div>
-  <div class="price-urgency">⏳ Narx tez orada oshadi</div>
 </section>
 
-<!-- CTA -->
-<section class="cta-section fade-in" id="cta">
-  <h2>Ushbu dasturda o'qing va birinchi oydayoq nutqingizda o'zgarishni his qiling.</h2>
-  <a href="https://t.me/m/OD0WXa9HY2My" target="_blank" class="cta-big-btn">Telegramdan adminga yozish →</a>
-</section>
+<footer>© Zamira Russian — Telegram ichida ishlaydigan rus tili o'rganish platformasi</footer>
 
 <script>
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
-},{threshold:0.1});
-document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-function animateCount(el){
-  const target = parseInt(el.dataset.target, 10);
-  const suffix = el.dataset.suffix || '';
-  const duration = 1200;
-  const start = performance.now();
-  function step(now){
-    const progress = Math.min((now - start) / duration, 1);
-    const eased = 1 - Math.pow(1 - progress, 3);
-    el.textContent = Math.round(eased * target) + suffix;
-    if(progress < 1) requestAnimationFrame(step);
-  }
-  requestAnimationFrame(step);
-}
-window.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.hero-stat-num[data-target]').forEach(el => {
-    setTimeout(() => animateCount(el), 350);
-  });
+const scrollbar = document.getElementById('scrollbar');
+window.addEventListener('scroll', () => {
+  const h = document.documentElement;
+  const scrolled = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+  scrollbar.style.width = scrolled + '%';
 });
 
-// Uchuvchi qalam — sichqoncha yoki barmoqqa yumshoq lag bilan ergashadi
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold: 0.15});
+document.querySelectorAll('.fx').forEach(el => observer.observe(el));
+
+// stage dots active state
+const dots = document.querySelectorAll('.stage-dots .d');
+const stages = document.querySelectorAll('section[id^="stage"]');
+const dotObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    const id = entry.target.getAttribute('id');
+    const dot = document.querySelector(`.d[data-target="${id}"]`);
+    if(!dot) return;
+    if(entry.isIntersecting){
+      dots.forEach(d => d.classList.remove('on'));
+      dot.classList.add('on');
+    }
+  });
+}, {rootMargin: '-45% 0px -45% 0px'});
+stages.forEach(s => dotObserver.observe(s));
+
+// Flying pencil
 (function(){
   const pencil = document.getElementById('flying-pencil');
   if(!pencil) return;
@@ -523,29 +701,22 @@ window.addEventListener('DOMContentLoaded', () => {
     function handleTouch(e){
       const t = e.touches[0];
       if(!t) return;
-      mouseX = t.clientX;
-      mouseY = t.clientY;
+      mouseX = t.clientX; mouseY = t.clientY;
       if(!active){ posX = mouseX; posY = mouseY; active = true; }
       pencil.style.opacity = '1';
     }
   } else {
     document.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
+      mouseX = e.clientX; mouseY = e.clientY;
       if(!active){ posX = mouseX; posY = mouseY; active = true; pencil.style.opacity = '1'; }
     });
     document.addEventListener('mouseleave', () => { pencil.style.opacity = '0'; });
     document.addEventListener('mouseenter', () => { pencil.style.opacity = '1'; });
   }
 
-  pencil.style.opacity = '0';
-  pencil.style.transition = 'opacity .3s ease';
-
   function loop(){
-    const dx = mouseX - posX;
-    const dy = mouseY - posY;
-    posX += dx * 0.14;
-    posY += dy * 0.14;
+    const dx = mouseX - posX, dy = mouseY - posY;
+    posX += dx * 0.14; posY += dy * 0.14;
     const dist = Math.sqrt(dx*dx + dy*dy);
     if(dist > 1.5){
       const targetAngle = Math.atan2(dy, dx) * 180 / Math.PI + 45;
