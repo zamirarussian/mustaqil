@@ -34,13 +34,13 @@ body{font-family:'Inter',sans-serif;background:#fff;color:var(--text);font-size:
 #scrollbar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--primary),var(--violet));width:0%;z-index:1000;transition:width .1s linear}
 
 nav{background:rgba(255,255,255,0.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:14px 22px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:999}
-.nav-brand{font-size:17px;font-weight:800;color:var(--text);display:flex;align-items:center;gap:8px}
-.nav-logo{width:28px;height:28px;border-radius:8px;background:var(--primary);display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.nav-logo::before{content:'';width:13px;height:13px;background:
-  linear-gradient(#fff,#fff) 0 0/5.5px 5.5px no-repeat,
-  linear-gradient(#fff,#fff) 7.5px 0/5.5px 5.5px no-repeat,
-  linear-gradient(#fff,#fff) 0 7.5px/5.5px 5.5px no-repeat,
-  linear-gradient(#fff,#fff) 7.5px 7.5px/5.5px 5.5px no-repeat}
+.nav-brand{font-size:13.5px;font-weight:700;color:var(--text-secondary);display:flex;align-items:center;gap:6px}
+.nav-logo{width:20px;height:20px;border-radius:6px;background:var(--primary);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.nav-logo::before{content:'';width:9px;height:9px;background:
+  linear-gradient(#fff,#fff) 0 0/4px 4px no-repeat,
+  linear-gradient(#fff,#fff) 5px 0/4px 4px no-repeat,
+  linear-gradient(#fff,#fff) 0 5px/4px 4px no-repeat,
+  linear-gradient(#fff,#fff) 5px 5px/4px 4px no-repeat}
 .nav-cta{background:var(--primary);color:#fff;border:none;padding:10px 20px;border-radius:10px;font-size:13.5px;font-weight:800;cursor:pointer;text-decoration:none;transition:transform .15s,background .15s}
 .nav-cta:hover{background:var(--primary-hover);transform:translateY(-1px)}
 
@@ -288,9 +288,8 @@ footer{text-align:center;padding:34px 20px;color:var(--text-secondary);font-size
 <div id="scrollbar"></div>
 <div id="flying-pencil">✏️</div>
 
-<nav>
+<nav style="justify-content:center">
   <span class="nav-brand"><span class="nav-logo"></span> Zamira Russian</span>
-  <a href="https://t.me/m/OD0WXa9HY2My" target="_blank" class="nav-cta">Boshlash →</a>
 </nav>
 
 <div class="stage-dots" id="stageDots">
